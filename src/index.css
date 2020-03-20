@@ -11,3 +11,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.PrimaryColor {
+  background-color: #235588;
+}
+
+.TextHeader {
+  text-align: left;
+}
+
+.IconColor {
+  color: #e2be1b;
+}
+
+.ButtonPrimary {
+  background-color: #235588;
+}
+
+.Content {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
