@@ -3,12 +3,14 @@ import ListUserComponent from "./ListComponent";
 // import AddUserComponent from "./user/AddUserComponent";
 // import EditUserComponent from "./user/EditUserComponent";
 import React from "react";
+import NavBar from './NavBar';
 
 
 const AppRouter = () => {
     return(
-        <div style={style}>
+        <div>
             <Router>
+                <NavBar/>
                 <Switch>
                     <Route path="/" exact component={ListUserComponent} />
                     {/*<Route path="/users" component={ListUserComponent} />*/}
@@ -18,10 +20,6 @@ const AppRouter = () => {
             </Router>
         </div>
     )
-}
-
-const style={
-    marginTop:'20px'
 }
 
 export default AppRouter;

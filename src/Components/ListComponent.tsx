@@ -11,7 +11,7 @@ import XforceAPI from "../Services/XforceAPI";
 class ListComponent extends Component <any, any>{
 
     constructor(props: any) {
-        super(props)
+        super(props);
         this.state = {
             users: [],
             message: null

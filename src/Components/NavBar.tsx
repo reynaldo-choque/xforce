@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react'
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -10,18 +10,21 @@ import MailIcon from '@material-ui/icons/Mail';
 import './NavBar.css'
 import {AppBar, IconButton, Toolbar, Typography} from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
+import { withRouter } from 'react-router-dom';
 
 const style = {
     flexGrow: 1
 }
 
-export default function NavBar(props: any) {
+class NavBar extends Component<any, any> {
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            left: false
+        }
+    }
 
-    const [state, setState] = React.useState({
-        left: false,
-    });
-
-    const toggleDrawer = (open: boolean) => (
+    toggleDrawer = (open: boolean) => (
         event: React.KeyboardEvent | React.MouseEvent,
     ) => {
         if (
@@ -32,21 +35,19 @@ export default function NavBar(props: any) {
         ) {
             return;
         }
-
-        setState({...state, left: open});
+        this.setState({left: open});
     };
 
-    const onList = () => {
-        //props.history.push('/edit-user');
-        // props.history.push("/");
+    onList = () => {
+        this.props.history.push('/');
     };
 
-    const list = () => (
+    list = () => (
         <div
             className={"ListSidebar"}
             role="presentation"
-            onClick={toggleDrawer(false)}
-            onKeyDown={toggleDrawer(false)}
+            onClick={this.toggleDrawer(false)}
+            onKeyDown={this.toggleDrawer(false)}
         >
             <List>
                 {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
@@ -55,9 +56,10 @@ export default function NavBar(props: any) {
                         <ListItemText primary={text}/>
                     </ListItem>
                 ))}
-                <ListItem button key="id1" onClick={onList}>
+                <ListItem button key="id1" onClick={this.onList}>
                     <ListItemIcon><InboxIcon/></ListItemIcon>
-                    <ListItemText primary="Lista"/>
+                    <ListItemText primary="Lista">
+                    </ListItemText>
                 </ListItem>
             </List>
             <Divider/>
@@ -72,28 +74,33 @@ export default function NavBar(props: any) {
         </div>
     );
 
-    return (
-        <>
-            <AppBar position="static">
-                <Toolbar className="PrimaryColor TextHeader">
-                    <IconButton edge="start" color="inherit" aria-label="Menu" onClick={toggleDrawer(true)}>
-                        <MenuIcon/>
-                    </IconButton>
-                    <Typography variant="h6" style={style}>
-                        XForce
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-            <React.Fragment key="menuSideBar">
-                <SwipeableDrawer
-                    open={state.left}
-                    onClose={toggleDrawer(false)}
-                    onOpen={toggleDrawer(true)}
-                >
-                    {list()}
-                </SwipeableDrawer>
-            </React.Fragment>
-        </>
+    render() {
+        return (
+            <div>
+                <AppBar position="fixed">
+                    <Toolbar className="PrimaryColor TextHeader">
+                        <IconButton edge="start" color="inherit" aria-label="Menu" onClick={this.toggleDrawer(true)}>
+                            <MenuIcon/>
+                        </IconButton>
+                        <Typography variant="h6" style={style}>
+                            XForce
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+                <div className="SpaceBottom"></div>
+                <React.Fragment key="menuSideBar">
+                    <SwipeableDrawer
+                        open={this.state.left}
+                        onClose={this.toggleDrawer(false)}
+                        onOpen={this.toggleDrawer(true)}
+                    >
+                        {this.list()}
+                    </SwipeableDrawer>
+                </React.Fragment>
+            </div>
 
-    );
+        );
+    }
 }
+
+export default  withRouter (NavBar);
