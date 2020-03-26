@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 
 var emergencia = Schema({
    departamento: String,
-   numeros: [String]
+   numeros: [Object]
 });
 
 module.exports = mongoose.model('Emergencia',emergencia)
