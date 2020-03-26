@@ -1,9 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import ListUserComponent from "./ListComponent";
-// import AddUserComponent from "./user/AddUserComponent";
-// import EditUserComponent from "./user/EditUserComponent";
 import React from "react";
 import NavBar from './NavBar';
+import DiagnosticComponent from "./DiagnosticComponent";
 
 
 const AppRouter = () => {
@@ -12,7 +10,7 @@ const AppRouter = () => {
             <Router>
                 <NavBar/>
                 <Switch>
-                    <Route path="/" exact component={ListUserComponent} />
+                    <Route path="/" exact component={DiagnosticComponent} />
                     {/*<Route path="/users" component={ListUserComponent} />*/}
                     {/*<Route path="/add-user" component={AddUserComponent} />*/}
                     {/*<Route path="/edit-user" component={EditUserComponent} />*/}

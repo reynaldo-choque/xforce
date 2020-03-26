@@ -42,6 +42,10 @@ class NavBar extends Component<any, any> {
         this.props.history.push('/');
     };
 
+    goTo = (screen: string) => {
+        this.props.history.push(screen);
+    };
+
     list = () => (
         <div
             className={"ListSidebar"}
@@ -50,26 +54,27 @@ class NavBar extends Component<any, any> {
             onKeyDown={this.toggleDrawer(false)}
         >
             <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
-                        <ListItemText primary={text}/>
-                    </ListItem>
-                ))}
-                <ListItem button key="id1" onClick={this.onList}>
+                <ListItem button key="id1" onClick={()=>this.goTo('/')}>
                     <ListItemIcon><InboxIcon/></ListItemIcon>
-                    <ListItemText primary="Lista">
+                    <ListItemText primary="Diagnostico">
                     </ListItemText>
                 </ListItem>
-            </List>
-            <Divider/>
-            <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
-                        <ListItemText primary={text}/>
-                    </ListItem>
-                ))}
+                <ListItem button key="id1" onClick={()=>this.goTo('/factores')}>
+                    <ListItemIcon><InboxIcon/></ListItemIcon>
+                    <ListItemText primary="Factores de Riesgo">
+                    </ListItemText>
+                </ListItem>
+                <ListItem button key="id1" onClick={()=>this.goTo('/sintomas')}>
+                    <ListItemIcon><InboxIcon/></ListItemIcon>
+                    <ListItemText primary="Síntomas">
+                    </ListItemText>
+                </ListItem>
+                <Divider/>
+                <ListItem button key="id1" onClick={()=>this.goTo('/emergencia')}>
+                    <ListItemIcon><InboxIcon/></ListItemIcon>
+                    <ListItemText primary="Números de emergencia">
+                    </ListItemText>
+                </ListItem>
             </List>
         </div>
     );

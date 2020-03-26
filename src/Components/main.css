@@ -1,0 +1,43 @@
+.Diagnostic {
+}
+
+.Diagnostic .AgeHeight {
+    height: 30px;
+    padding-left: 50px;
+}
+
+.Diagnostic .input {
+    width: 150px;
+    margin-bottom: 5px;
+}
+
+.Diagnostic .symptom {
+    width: 100%;
+    margin-top: 20px;
+    text-align: left;
+    background-color: #f9f9f9;
+    padding: 2px;
+}
+
+.Diagnostic .symptom .select{
+    text-align: center;
+}
+
+.Diagnostic .symptom .titleQuestion{
+    font-weight: bold;
+    padding: 5px;
+}
+
+.Diagnostic .helpText{
+    text-align: justify;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    padding: 5px;
+    line-height: inherit;
+}
+
+.Diagnostic .title {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
