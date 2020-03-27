@@ -8,7 +8,7 @@ const headers = {
     "App-Id" : applicationId,
     "App-Key" : applicationKey,
     "Content-Type" :"application/json",
-    "Model" : "infermedica-es"
+    "Model" : "infermedica-es-xl"
 };
 
 class ApiService {
@@ -39,6 +39,10 @@ class ApiService {
 
     editUser(user: any) {
         return axios.put(DIAGNOSTIC_API_BASE_URL + '/' + user.id, user);
+    }
+
+    getRiskFactors = () => {
+        return axios.get('https://api.infermedica.com/covid19/risk_factors', {headers: headers});
     }
 
 }
