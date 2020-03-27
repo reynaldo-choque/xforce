@@ -18,7 +18,6 @@ interface IFactor {
 }
 
 class RiskFactors extends React.Component {
-    //state = {users: Array<Iuser>()}
     state = {
         factors: Array<IFactor>()
     };
@@ -32,20 +31,6 @@ class RiskFactors extends React.Component {
     }
 
     render() {
-        console.log(this.state.factors);
-        /*
-         * <List component="nav" aria-label="main mailbox folders">
-         <ListItem button>
-         <ListItemIcon>
-         <InboxIcon />
-         </ListItemIcon>
-         <ListItemText primary="Inbox" />
-         </ListItem>
-         <ListItemText
-         primary="Single-line item"
-         secondary={secondary ? 'Secondary text' : null}
-         />
-         * */
         return (
             <React.Fragment>
                 <div>Factores de Riesgo</div>
