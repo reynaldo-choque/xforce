@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import React from "react";
 import NavBar from './NavBar';
 import DiagnosticComponent from "./DiagnosticComponent";
+import RiskFactors from './RiskFactors/RiskFactors';
 
 
 const AppRouter = () => {
@@ -11,7 +12,7 @@ const AppRouter = () => {
                 <NavBar/>
                 <Switch>
                     <Route path="/" exact component={DiagnosticComponent} />
-                    {/*<Route path="/users" component={ListUserComponent} />*/}
+                    <Route path="/factores" component={RiskFactors} />
                     {/*<Route path="/add-user" component={AddUserComponent} />*/}
                     {/*<Route path="/edit-user" component={EditUserComponent} />*/}
                 </Switch>
