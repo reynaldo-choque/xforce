@@ -17,6 +17,7 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 import './main.css';
 import {IDiagnostic} from "../Interfaces";
+import {TypeQuestionEnum} from "../enums/TypeQuestionEnum";
 
 interface IState {
     diagnostic: IDiagnostic | null;
@@ -27,6 +28,8 @@ interface IState {
     questions: any;
     questionSingle: any;
     results: any;
+    departamento: string;
+    disabled: boolean;
 }
 
 class DiagnosticComponent extends Component <any, IState>{
@@ -34,6 +37,8 @@ class DiagnosticComponent extends Component <any, IState>{
     constructor(props: any) {
         super(props);
         this.state = {
+            disabled: false,
+            departamento: 'Beni',
             diagnostic: null,
             age: 0,
             sex: "female",
@@ -100,6 +105,10 @@ class DiagnosticComponent extends Component <any, IState>{
     }
 
     continue = () => {
+
+        this.setState({
+            disabled: true
+        });
         if(this.state.response && this.state.response.should_stop) {
             this.getEndResult();
         }
@@ -140,7 +149,9 @@ class DiagnosticComponent extends Component <any, IState>{
             questions: null,
             questionSingle: null,
             results: null,
-            response: null
+            response: null,
+            disabled: false,
+            departamento: 'Beni'
         });
     }
 
@@ -180,7 +191,7 @@ class DiagnosticComponent extends Component <any, IState>{
             console.log(this.state.questions);
         })
     };
-    
+
     getUniques(arr: any, comp: string) {
         const unique = arr
             .map((e: any) => e[comp])
@@ -201,6 +212,12 @@ class DiagnosticComponent extends Component <any, IState>{
         });
     };
 
+    onChangeDepartamento = (event: React.ChangeEvent<{ value: unknown }>) => {
+        this.setState({
+            departamento: (event.target.value as string)
+        });
+    };
+
     onEnd = () => {
         this.InitialValues();
     }
@@ -210,7 +227,26 @@ class DiagnosticComponent extends Component <any, IState>{
             <div className="Diagnostic">
 
                 <Typography className={"title"} variant="h4">Consulta tu salud</Typography>
-                <FormControl className="input">
+                <FormControl className="inputFull" disabled={this.state.disabled}>
+                    <InputLabel id="input-dep">Departamento</InputLabel>
+                    <Select
+                        labelId="input-dep"
+                        id="departamento"
+                        value={this.state.departamento}
+                        onChange={this.onChangeDepartamento}
+                    >
+                        <MenuItem value="Beni">Beni</MenuItem>
+                        <MenuItem value="Chuquisaca">Chuquisaca</MenuItem>
+                        <MenuItem value="Cochabamba">Cochabamba</MenuItem>
+                        <MenuItem value="La Paz">La Paz</MenuItem>
+                        <MenuItem value="Oruro">Oruro</MenuItem>
+                        <MenuItem value="Pando">Pando</MenuItem>
+                        <MenuItem value="Potosi">Potosi</MenuItem>
+                        <MenuItem value="Santa Cruz">Santa Cruz</MenuItem>
+                        <MenuItem value="Tarija">Tarija</MenuItem>
+                    </Select>
+                </FormControl>
+                <FormControl className="input" disabled={this.state.disabled}>
                     <InputLabel id="demo-simple-select-label">Sexo</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
@@ -222,7 +258,7 @@ class DiagnosticComponent extends Component <any, IState>{
                         <MenuItem value="male">Masculino</MenuItem>
                     </Select>
                 </FormControl>
-                <FormControl className="input">
+                <FormControl className="input" disabled={this.state.disabled}>
                     <InputLabel id="demo-simple-select-label">Edad</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
@@ -248,7 +284,7 @@ class DiagnosticComponent extends Component <any, IState>{
                 }
                 <>
                 {
-                    this.state.response && !this.state.response.should_stop && this.state.response.question.type === "group_multiple" &&
+                    this.state.response && !this.state.response.should_stop && this.state.response.question.type === TypeQuestionEnum.group_multiple &&
                         this.state.response.question.items.map((item:any)=> {
                             return(<>
                                     <FormControl className="symptom" key={item.id+"form"}>
@@ -278,7 +314,7 @@ class DiagnosticComponent extends Component <any, IState>{
                 }</>
                 <>
                 {
-                    this.state.response && !this.state.response.should_stop && this.state.response.question.type === "single" &&
+                    this.state.response && !this.state.response.should_stop && this.state.response.question.type === TypeQuestionEnum.single &&
                     this.state.response.question.items.map((item:any)=> {
                         return(<>
                                 <FormControl className="symptom" key={item.id+"form"}>
@@ -309,13 +345,13 @@ class DiagnosticComponent extends Component <any, IState>{
                 </>
                 <>
                     {
-                        this.state.response && !this.state.response.should_stop && this.state.response.question.type === "group_single" &&
+                        this.state.response && !this.state.response.should_stop && this.state.response.question.type === TypeQuestionEnum.group_single &&
                         <>
                             <FormControl className="symptom" key={"Singleform"}>
                                 <FormLabel component="legend">{this.state.response.question.text}</FormLabel>
                                 <RadioGroup aria-label="ALGO" name="SINGLE" value={null} onChange={this.onChangeGroupSingle}>
                                     {this.state.response.question.items.map((item:any)=> {
-                                        return(<><FormControlLabel value={item.id} control={<Radio />} label={item.name} /></>)
+                                        return(<><FormControlLabel value={item.id} control={<Radio size="small" />} label={item.name} className="radioButton"/></>)
                                     })
                                     }
                                 </RadioGroup>

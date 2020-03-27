@@ -10,6 +10,10 @@
     width: 150px;
     margin-bottom: 5px;
 }
+.Diagnostic .inputFull {
+    width: 100%;
+    margin-bottom: 20px;
+}
 
 .Diagnostic .symptom {
     width: 100%;
@@ -17,6 +21,10 @@
     text-align: left;
     background-color: #f9f9f9;
     padding: 2px;
+}
+
+.Diagnostic .symptom .span .radioButton {
+    font-size: small;
 }
 
 .Diagnostic .symptom .select{

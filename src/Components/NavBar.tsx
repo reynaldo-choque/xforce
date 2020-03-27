@@ -11,6 +11,7 @@ import './NavBar.css'
 import {AppBar, IconButton, Toolbar, Typography} from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 import { withRouter } from 'react-router-dom';
+import ReplayIcon from '@material-ui/icons/Replay';
 
 const style = {
     flexGrow: 1
@@ -38,8 +39,8 @@ class NavBar extends Component<any, any> {
         this.setState({left: open});
     };
 
-    onList = () => {
-        this.props.history.push('/');
+    replay = () => {
+        window.location.reload();
     };
 
     goTo = (screen: string) => {
@@ -90,6 +91,9 @@ class NavBar extends Component<any, any> {
                         <Typography variant="h6" style={style}>
                             XForce
                         </Typography>
+                        <IconButton aria-label="replay" color="inherit" onClick={this.replay} >
+                            <ReplayIcon />
+                        </IconButton>
                     </Toolbar>
                 </AppBar>
                 <div className="SpaceBottom"></div>
