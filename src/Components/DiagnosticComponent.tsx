@@ -50,40 +50,7 @@ class DiagnosticComponent extends Component <any, IState>{
         }
     }
 
-    componentDidMount() {
-        // this.reloadUserList();
-    }
-
-    reloadUserList() {
-        XforceAPI.fetchUsers()
-            .then((res) => {
-                // this.setState({users: res.data.result})
-            });
-    }
-
-    deleteUser(userId: string) {
-        XforceAPI.deleteUser(userId)
-            .then(res => {
-                // this.setState({message : 'User deleted successfully.'});
-                // this.setState({users: this.state.users.filter(user => user.id !== userId)});
-            })
-    }
-
-    prepareData = ():IDiagnostic => {
-        if( this.state.questionSingle) {
-            let answers = [...this.state.questions, ...this.state.questionSingle];
-            let uniques =  this.getUniques(answers, "id");
-
-            this.setState({
-                questions: uniques
-            }, () => {
-                this.setState({questionSingle: null});
-            });
-        }
-        return this.prepareRequest()
-    }
-
-    prepareRequest = () => {
+    prepareRequestFromSelects = () => {
         const diagnostic: IDiagnostic = {
             sex: this.state.sex,
             age: this.state.age,
@@ -92,10 +59,18 @@ class DiagnosticComponent extends Component <any, IState>{
         return diagnostic;
     }
 
-    esconder() {
+    prepareRequestFromRadioButton = () => {
+        const diagnostic: IDiagnostic = {
+            sex: this.state.sex,
+            age: this.state.age,
+            evidence: this.state.questions ? [...this.state.questions, ...this.state.questionSingle] : []
+        }
         this.setState({
-            components: null
+            questionSingle: null,
+            questions: [...this.state.questions, ...this.state.questionSingle]
         });
+
+        return diagnostic;
     }
 
     continue = () => {
@@ -110,8 +85,9 @@ class DiagnosticComponent extends Component <any, IState>{
             this.getQuestions();
         }
     }
-    getQuestions() {
-        const diagnostic = this.prepareData();
+
+    getQuestions = () => {
+        const diagnostic = this.state.questionSingle ? this.prepareRequestFromRadioButton() : this.prepareRequestFromSelects();
         XforceAPI.getQuestion(diagnostic).then(res => {
             this.setState({
                 response: res.data,
@@ -124,7 +100,7 @@ class DiagnosticComponent extends Component <any, IState>{
     }
 
     getEndResult = () => {
-        const request = this.prepareRequest();
+        const request = this.prepareRequestFromSelects();
         XforceAPI.getEndResult(request).then(res => {
             this.setState({
                 results: res.data,
@@ -156,22 +132,11 @@ class DiagnosticComponent extends Component <any, IState>{
          this.setState({
             questionSingle: evidence
         }, () => {
-            // console.log(this.state.questionSingle);
+            console.log(this.state.questionSingle[0].id);
         })
     };
 
-    onChangeSingle = (event: React.ChangeEvent<{ value: unknown, name?: string}>) => {
-        const  questionId = event.target.name;
-        const  questionValue = event.target.value;
-        const evidence = [{id: questionId, choice_id: questionValue}];
-        this.setState({
-            questionSingle: evidence
-        }, () => {
-            console.log(this.state.questionSingle);
-        })
-    };
-
-    onChangeGroupMultiple = (event: React.ChangeEvent<{ value: unknown, name?: string}>) => {
+    onChangeSelectQuestion = (event: React.ChangeEvent<{ value: unknown, name?: string}>) => {
         const  questionId = event.target.name;
         const  questionValue = (event.target.value as string);
 
@@ -191,12 +156,10 @@ class DiagnosticComponent extends Component <any, IState>{
     }
 
     getUniques(arr: any, comp: string) {
-        const unique = arr
+        return arr
             .map((e: any) => e[comp])
-            .map((e: any, i:any, final: any) => final.indexOf(e) === i && i)
+            .map((e: any, i: any, final: any) => final.indexOf(e) === i && i)
             .filter((e: any) => arr[e]).map((e: any) => arr[e]);
-
-        return unique;
     }
 
     onChangeSex = (event: React.ChangeEvent<{ value: unknown }>) => {
@@ -290,7 +253,7 @@ class DiagnosticComponent extends Component <any, IState>{
                                         labelId="demo-simple-select-label"
                                         id={item.name}
                                         value={this.getValue(item.id)}
-                                        onChange={this.onChangeGroupMultiple}
+                                        onChange={this.onChangeSelectQuestion}
                                         key = {item.id+"sel"}
                                         name = {item.id}
                                         className="select"
@@ -320,7 +283,7 @@ class DiagnosticComponent extends Component <any, IState>{
                                         labelId="demo-simple-select-label"
                                         id={item.id}
                                         value={this.getValue(item.id)}
-                                        onChange={this.onChangeGroupMultiple}
+                                        onChange={this.onChangeSelectQuestion}
                                         key = {item.id+"sel"}
                                         name = {item.id}
                                         className="select"
@@ -346,7 +309,10 @@ class DiagnosticComponent extends Component <any, IState>{
                         <>
                             <FormControl className="symptom" key={"Singleform"}>
                                 <FormLabel component="legend">{this.state.response.question.text}</FormLabel>
-                                <RadioGroup aria-label="ALGO" name="SINGLE" value={this.getValue(this.state.response.question.items.id)} onChange={this.onChangeGroupSingle}>
+                                <RadioGroup aria-label="ALGO" name="SINGLE"
+                                            value={this.state.questionSingle ?
+                                                this.state.questionSingle[0].id: ' '}
+                                            onChange={this.onChangeGroupSingle}>
                                     {this.state.response.question.items.map((item:any)=> {
                                         return(<><FormControlLabel value={item.id} control={<Radio size="small" />} label={item.name} className="radioButton"/></>)
                                     })
@@ -368,6 +334,7 @@ class DiagnosticComponent extends Component <any, IState>{
                             <Typography variant="body1" component="h1">
                                 {this.state.results.label}
                             </Typography>
+                            <br/>
                         </>
                 }
                 { !this.state.results &&
