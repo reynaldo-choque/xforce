@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const DIAGNOSTIC_API_BASE_URL = 'https://api.infermedica.com/covid19/diagnosis';
 const RESULT_API_BASE_URL = 'https://api.infermedica.com/covid19/triage';
+const RISK_FACTORS_API_BASE_URL = 'https://api.infermedica.com/covid19/risk_factors';
 const applicationId = '0aacb862';
 const applicationKey = '8d286477c4e1a78038433ea90c91bbb1';
 const headers = {
@@ -29,8 +30,8 @@ class ApiService {
         return axios.post(""+DIAGNOSTIC_API_BASE_URL, user);
     }
 
-    getQuestion(datastep1: any) {
-        return axios.post(DIAGNOSTIC_API_BASE_URL, datastep1, {headers: headers});
+    getQuestion(data: any) {
+        return axios.post(DIAGNOSTIC_API_BASE_URL, data, {headers: headers});
     }
 
     getEndResult(data: any) {
@@ -42,9 +43,8 @@ class ApiService {
     }
 
     getRiskFactors = () => {
-        return axios.get('https://api.infermedica.com/covid19/risk_factors', {headers: headers});
+        return axios.get(RISK_FACTORS_API_BASE_URL, {headers: headers});
     }
-
 }
 
 export default new ApiService();
