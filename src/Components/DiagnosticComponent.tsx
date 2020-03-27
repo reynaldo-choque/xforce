@@ -46,16 +46,7 @@ class DiagnosticComponent extends Component <any, IState>{
             questions: null,
             questionSingle: null,
             results: null,
-            response: null // {"conditions":[],"extras":{},"question":{"explanation":"Se siente bastante peor que hace solo una hora. Sus s\u00edntomas no est\u00e1n mejorando, a pesar de sus acciones.","extras":{},"items":[{"choices":[{"id":"present","label":"S\u00ed"},{"id":"absent","label":"No"}],"explanation":null,"id":"s_12","name":"\u00bfSus s\u00edntomas empeoran r\u00e1pidamente?"}],"text":"\u00bfSus s\u00edntomas empeoran r\u00e1pidamente?","type":"single"},"should_stop":false}
-
-            // {
-            //     "conditions": [],
-            //     "extras": {},
-            //     "question": null,
-            //     "should_stop": true
-            // },
-        // {"conditions":[],"extras":{},"question":{"explanation":"Por \u201csospecha\u201d queremos decir una persona con una infecci\u00f3n confirmada por COVID-19 o sometida a la prueba del COVID-19.","extras":{},"items":[{"choices":[{"id":"present","label":"S\u00ed"},{"id":"absent","label":"No"}],"explanation":null,"id":"p_12","name":"Vivo o he atendido a una persona sospechosa de tener el COVID-19"},{"choices":[{"id":"present","label":"S\u00ed"},{"id":"absent","label":"No"}],"explanation":null,"id":"p_13","name":"He compartido el mismo entorno cerrado (p. ej., clase, espacio de trabajo, gimnasio) o viajado en proximidad (1 m) con una persona sospechosa de tener el COVID-19"},{"choices":[{"id":"present","label":"S\u00ed"},{"id":"absent","label":"No"}],"explanation":null,"id":"p_14","name":"Tuve un contacto personal durante m\u00e1s de 15 minutos con alguien sospechoso de tener COVID-19"},{"choices":[{"id":"present","label":"S\u00ed"},{"id":"absent","label":"No"}],"explanation":null,"id":"p_11","name":"Otro"},{"choices":[{"id":"present","label":"S\u00ed"},{"id":"absent","label":"No"}],"explanation":null,"id":"p_15","name":"Ninguna de las opciones anteriores"}],"text":"\u00bfHa tenido contacto cercano con una persona con sospecha de infecci\u00f3n de COVID-19 en los \u00faltimos 14 d\u00edas?","type":"group_single"},"should_stop":false}
-
+            response: null
         }
     }
 
@@ -79,13 +70,16 @@ class DiagnosticComponent extends Component <any, IState>{
     }
 
     prepareData = ():IDiagnostic => {
-        this.state.questionSingle &&
+        if( this.state.questionSingle) {
+            let answers = [...this.state.questions, ...this.state.questionSingle];
+            let uniques =  this.getUniques(answers, "id");
+
             this.setState({
-                questions: [...this.state.questions, ... this.state.questionSingle]
+                questions: uniques
             }, () => {
                 this.setState({questionSingle: null});
             });
-
+        }
         return this.prepareRequest()
     }
 
@@ -135,7 +129,7 @@ class DiagnosticComponent extends Component <any, IState>{
             this.setState({
                 results: res.data,
             },() => {
-                console.warn(this.state.results);
+                // console.warn(this.state.results);
             });
         });
     }
@@ -162,7 +156,7 @@ class DiagnosticComponent extends Component <any, IState>{
          this.setState({
             questionSingle: evidence
         }, () => {
-            console.log(this.state.questionSingle);
+            // console.log(this.state.questionSingle);
         })
     };
 
@@ -188,9 +182,13 @@ class DiagnosticComponent extends Component <any, IState>{
         this.setState({
             questions: uniques
         }, () => {
-            console.log(this.state.questions);
-        })
+        });
     };
+
+    getValue = (questionId: string) => {
+        const res = this.state.questions ? (this.state.questions.find((q:any)=> q.id === questionId)) : null;
+        return  res ? res["choice_id"]: ' ';
+    }
 
     getUniques(arr: any, comp: string) {
         const unique = arr
@@ -225,7 +223,6 @@ class DiagnosticComponent extends Component <any, IState>{
     render() {
         return (
             <div className="Diagnostic">
-
                 <Typography className={"title"} variant="h4">Consulta tu salud</Typography>
                 <FormControl className="inputFull" disabled={this.state.disabled}>
                     <InputLabel id="input-dep">Departamento</InputLabel>
@@ -292,7 +289,7 @@ class DiagnosticComponent extends Component <any, IState>{
                                     <Select
                                         labelId="demo-simple-select-label"
                                         id={item.name}
-                                        value={"absent"}
+                                        value={this.getValue(item.id)}
                                         onChange={this.onChangeGroupMultiple}
                                         key = {item.id+"sel"}
                                         name = {item.id}
@@ -321,9 +318,9 @@ class DiagnosticComponent extends Component <any, IState>{
                                     <InputLabel key={item.id+"in"} className="titleQuestion">{item.name}</InputLabel>
                                     <Select
                                         labelId="demo-simple-select-label"
-                                        id={item.name}
-                                        value={"absent"}
-                                        onChange={this.onChangeSingle}
+                                        id={item.id}
+                                        value={this.getValue(item.id)}
+                                        onChange={this.onChangeGroupMultiple}
                                         key = {item.id+"sel"}
                                         name = {item.id}
                                         className="select"
@@ -349,7 +346,7 @@ class DiagnosticComponent extends Component <any, IState>{
                         <>
                             <FormControl className="symptom" key={"Singleform"}>
                                 <FormLabel component="legend">{this.state.response.question.text}</FormLabel>
-                                <RadioGroup aria-label="ALGO" name="SINGLE" value={null} onChange={this.onChangeGroupSingle}>
+                                <RadioGroup aria-label="ALGO" name="SINGLE" value={this.getValue(this.state.response.question.items.id)} onChange={this.onChangeGroupSingle}>
                                     {this.state.response.question.items.map((item:any)=> {
                                         return(<><FormControlLabel value={item.id} control={<Radio size="small" />} label={item.name} className="radioButton"/></>)
                                     })
