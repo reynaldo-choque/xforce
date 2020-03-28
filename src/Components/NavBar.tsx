@@ -89,7 +89,7 @@ class NavBar extends Component<any, any> {
                             <MenuIcon/>
                         </IconButton>
                         <Typography variant="h6" style={style}>
-                            XForce
+                            Diagnóstico Covid19
                         </Typography>
                         <IconButton aria-label="replay" color="inherit" onClick={this.replay} >
                             <ReplayIcon />

@@ -15,6 +15,7 @@ import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
 import {SERIOUS_RISK, NORMAL_RISK, EMERGENCY_RISK} from "../../utils/Constants";
 
 import "./RiskFactors.css";
+import {Typography} from "@material-ui/core";
 
 interface IFactor {
     category: any,
@@ -46,7 +47,10 @@ class RiskFactors extends React.Component <any, any> {
         const {intl} = this.props;
         return (
             <React.Fragment>
-                <div className={"risk-factors title"}>{intl.formatMessage({id: 'risk.factors.title'})}</div>
+                <div className={"risk-factors title"}>
+                    <Typography variant="h6" component="h2">
+                        {intl.formatMessage({id: 'risk.factors.title'})}
+                    </Typography></div>
                 <List aria-label="factors list" className={"risk-factors list"}>
                     {
                         this.state.factors.map((risk, i) =>

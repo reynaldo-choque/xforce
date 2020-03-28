@@ -15,9 +15,7 @@ const headers = {
 };
 
 const headerOwn = {
-    'Access-Control-Allow-Origin': '*',
     "Content-Type" :"application/json",
-    'crossDomain': true
 }
 
 class ApiService {
