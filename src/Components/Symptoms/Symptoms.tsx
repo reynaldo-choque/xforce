@@ -16,6 +16,7 @@ import {SERIOUS_SYMPTOM, NORMAL_SYMPTOM, EMERGENCY_SYMPTOM} from "../../utils/Co
 
 import "./Symptoms.css";
 import ambulance from "../../images/ambulance.png";
+import {Typography} from "@material-ui/core";
 
 interface ISymtom {
     category: any,
@@ -50,7 +51,11 @@ class Symptoms extends React.Component <any, any> {
         const {intl} = this.props;
         return (
             <React.Fragment>
-                <div className={"symptom title"}>{intl.formatMessage({id: 'symptom.title'})}</div>
+                <div className={"symptom title"}>
+                    <Typography variant="h6" component="h2">
+                        {intl.formatMessage({id: 'symptom.title'})}
+                    </Typography>
+                </div>
                 <List component="nav" aria-label="main mailbox folders">
                     {
                         this.state.symptoms.map((symptom, i) =>
