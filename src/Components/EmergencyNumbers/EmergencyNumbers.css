@@ -1,0 +1,35 @@
+.wrap .root {
+    width: 100%;
+    position: relative;
+    overflow: auto;
+    height: 500px;
+    padding: 0;
+}
+
+.wrap .root .sectionId {
+    /*color: #e2be1b;*/
+    list-style: unset;
+}
+
+.wrap .root .listSection {
+    background-color: inherit;
+}
+
+.wrap .root .listSection .ul {
+    padding: 0;
+    list-style: none;
+}
+
+.wrap .root .subtitle {
+    padding: 0;
+    font-size: medium;
+    color: gray;
+}
+
+.wrap .title {
+    font-size: large;
+}
+
+a {
+    color: #6CCE52;
+}

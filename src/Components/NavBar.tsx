@@ -60,18 +60,18 @@ class NavBar extends Component<any, any> {
                     <ListItemText primary="Diagnostico">
                     </ListItemText>
                 </ListItem>
-                <ListItem button key="id1" onClick={()=>this.goTo('/factores')}>
+                <ListItem button key="id2" onClick={()=>this.goTo('/factores')}>
                     <ListItemIcon><InboxIcon/></ListItemIcon>
                     <ListItemText primary="Factores de Riesgo">
                     </ListItemText>
                 </ListItem>
-                <ListItem button key="id1" onClick={()=>this.goTo('/sintomas')}>
+                <ListItem button key="id3" onClick={()=>this.goTo('/sintomas')}>
                     <ListItemIcon><InboxIcon/></ListItemIcon>
                     <ListItemText primary="Síntomas">
                     </ListItemText>
                 </ListItem>
                 <Divider/>
-                <ListItem button key="id1" onClick={()=>this.goTo('/emergencia')}>
+                <ListItem button key="id4" onClick={()=>this.goTo('/numerosEmergencia')}>
                     <ListItemIcon><InboxIcon/></ListItemIcon>
                     <ListItemText primary="Números de emergencia">
                     </ListItemText>

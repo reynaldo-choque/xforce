@@ -3,6 +3,7 @@ import React from "react";
 import NavBar from './NavBar';
 import DiagnosticComponent from "./DiagnosticComponent";
 import RiskFactors from './RiskFactors/RiskFactors';
+import EmergencyNumbers from "./EmergencyNumbers/EmergencyNumbers";
 
 
 const AppRouter = () => {
@@ -13,7 +14,7 @@ const AppRouter = () => {
                 <Switch>
                     <Route path="/" exact component={DiagnosticComponent} />
                     <Route path="/factores" component={RiskFactors} />
-                    {/*<Route path="/add-user" component={AddUserComponent} />*/}
+                    <Route path="/numerosEmergencia" component={EmergencyNumbers} />
                     {/*<Route path="/edit-user" component={EditUserComponent} />*/}
                 </Switch>
             </Router>
