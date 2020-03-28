@@ -15,21 +15,27 @@
     background-color: inherit;
 }
 
-.wrap .root .listSection .ul {
-    padding: 0;
-    list-style: none;
+.wrap .root .sectionId .listItem {
+    background-color: white;
+    margin-bottom: 1px;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 .wrap .root .subtitle {
     padding: 0;
     font-size: medium;
-    color: gray;
-}
-
-.wrap .title {
-    font-size: large;
+    color: #404040;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    border-bottom: 1px gainsboro solid;
 }
 
 a {
     color: #6CCE52;
+}
+
+ul {
+    list-style: none;
+    padding: 0px;
 }

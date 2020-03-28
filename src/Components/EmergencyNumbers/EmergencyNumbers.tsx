@@ -5,7 +5,7 @@ import List from '@material-ui/core/List';
 import ListItem, {ListItemProps} from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import './EmergencyNumbers.css'
-import {IconButton, ListItemSecondaryAction, ListSubheader, Typography} from "@material-ui/core";
+import {Divider, IconButton, ListItemSecondaryAction, ListSubheader, Typography} from "@material-ui/core";
 import PhoneEnabledIcon from '@material-ui/icons/PhoneEnabled';
 
 interface IState {
@@ -51,14 +51,16 @@ class EmergencyNumbers extends React.Component<any, IState> {
     render() {
         return (
             <div className="wrap" >
-                <div className="title">Números de Emergencia</div>
-                <List className="root" subheader={<li />}>
+                <Typography variant="h6" component="h2">
+                    Números de Emergencia
+                </Typography>
+                <List className="root">
                     {   this.state.emergencyNumbers && this.state.emergencyNumbers!.departamentos.map((dep: IDepartamento) => (
                         <li key={`section-${dep.departamento}`} className="sectionId">
-                            <ul key={`ul-${dep._id}`}className="ul">
+                            <ul key={`ul-${dep._id}`}>
                                 <ListSubheader className={"subtitle"}>{`Departamento ${dep.departamento}`}</ListSubheader>
                                 {dep.numeros.map((numero:INumeros) => (
-                                    <ListItem key={`item-${dep.departamento}-${numero.descripcion}`}>
+                                    <ListItem key={`item-${dep.departamento}-${numero.descripcion}`} className="listItem">
                                         <ListItemText key={numero.descripcion} primary={numero.descripcion}
                                           secondary={
                                                   <Typography

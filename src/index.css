@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #F8F8FD;
 }
 
 code {
@@ -13,7 +14,8 @@ code {
 }
 
 .PrimaryColor {
-  background-color: #235588;
+  background-color: #F8F8FD;
+  color: #101010;
 }
 
 .TextHeader {
@@ -21,7 +23,7 @@ code {
 }
 
 .IconColor {
-  color: #e2be1b;
+  color: #F8F8FD;
 }
 
 .ButtonPrimary {
