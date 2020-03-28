@@ -20,7 +20,7 @@ import './main.css';
 import {IDiagnostic} from "../Interfaces";
 import {TypeQuestionEnum} from "../enums/TypeQuestionEnum";
 
-const uuidv4 = require('uuid/v4');
+import { uuidv4 }from 'uuid/v4';
 
 interface IState {
     diagnostic: IDiagnostic | null;
