@@ -3,7 +3,7 @@ import React from "react";
 import NavBar from './NavBar';
 import DiagnosticComponent from "./DiagnosticComponent";
 import RiskFactors from './RiskFactors/RiskFactors';
-
+import Symptoms from './Symptoms/Symptoms';
 
 const AppRouter = () => {
     return(
@@ -13,7 +13,7 @@ const AppRouter = () => {
                 <Switch>
                     <Route path="/" exact component={DiagnosticComponent} />
                     <Route path="/factores" component={RiskFactors} />
-                    {/*<Route path="/add-user" component={AddUserComponent} />*/}
+                    <Route path="/sintomas" component={Symptoms} />
                     {/*<Route path="/edit-user" component={EditUserComponent} />*/}
                 </Switch>
             </Router>
