@@ -78,7 +78,6 @@ class DiagnosticComponent extends Component <any, IState>{
     }
 
     continue = () => {
-        debugger;
         this.setState({
             disabled: true
         });
