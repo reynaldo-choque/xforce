@@ -2,6 +2,7 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
+var cors = require('cors');
 
 var app = express();
 
@@ -14,7 +15,13 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 //CORS
-
+app.use(cors({
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+    "preflightContinue": true,
+    "headers": "Content-Type, Authorization, Content-Length, X-Requested-With",
+    "Access-Control-Allow-Headers": "Authorization, Content-Type",
+}));
 
 //rutas
 
