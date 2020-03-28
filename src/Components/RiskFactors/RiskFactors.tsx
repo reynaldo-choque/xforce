@@ -54,6 +54,7 @@ class RiskFactors extends React.Component <any, any> {
                                 <ListItemText
                                     primary={risk.name}
                                     secondary={'Nivel de Riesgo: ' + intl.formatMessage({id: risk.seriousness})}
+                                    className={"risk-factors list item-text"}
                                 />
                                 {risk.seriousness === NORMAL_RISK && (<ListItemIcon><ErrorIcon className={"risk-factors list item normal-risk"}/></ListItemIcon>)}
                                 {risk.seriousness === SERIOUS_RISK && (<ListItemIcon><WarningIcon className={"risk-factors list item serious-risk"}/></ListItemIcon>)}

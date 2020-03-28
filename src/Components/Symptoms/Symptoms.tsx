@@ -58,6 +58,7 @@ class Symptoms extends React.Component <any, any> {
                                 <ListItemText
                                     primary={symptom.name}
                                     secondary={'Nivel de Riesgo: ' + intl.formatMessage({id: symptom.seriousness})}
+                                    className={"symptom list item-text"}
                                 />
                                 {symptom.seriousness === NORMAL_SYMPTOM && (<ListItemIcon><ErrorIcon
                                     className={"symptom list item normal-symptom"}/></ListItemIcon>)}
