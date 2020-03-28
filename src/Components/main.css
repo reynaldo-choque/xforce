@@ -57,3 +57,19 @@
 .radioButton span{
     font-size: 14px;
 }
+
+.emergency-phone {
+    margin: 15px 0;
+    color: green;
+}
+
+.emergency-phone a{
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.emergency-phone svg{
+    font-size: 25px;
+    margin-left: 10px;
+    vertical-align: bottom;
+}

@@ -59,7 +59,9 @@ class ApiService {
     }
     
     getEmergencyNumbers = () => {
-        return axios.get(EMERGENCY_NUMBERS_API_BASE_URL, {headers: headerOwn});
+        return axios.get(EMERGENCY_NUMBERS_API_BASE_URL, {headers: {
+            "Content-Type" :"application/json",
+        }});
     }
 }
 

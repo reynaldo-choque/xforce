@@ -1,10 +1,14 @@
+const uuidv4 = require('uuid/v4');
+
 import React, {Component} from 'react'
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import XforceAPI from "../Services/XforceAPI";
 import {injectIntl} from 'react-intl';
+import PhoneEnabledIcon from '@material-ui/icons/PhoneEnabled';
 
-const uuidv4 = require('uuid/v4');
+//CONSTANTS
+import { EMERGENCY_LEVEL_4, EMERGENCY_LEVEL_5} from "../utils/Constants";
 
 import {
     FormControl,
@@ -34,7 +38,25 @@ interface IState {
     results: any;
     departamento: string;
     disabled: boolean;
+    emergencyNumbers : INumberEmergency | null;
 }
+
+interface INumberEmergency {
+    departamentos: IDepartamento[],
+}
+
+interface IDepartamento {
+    numeros: INumeros[],
+    departamento: string,
+    _id: string,
+    __v: number
+}
+
+interface INumeros {
+    descripcion: string,
+    numero: string
+}
+
 
 class DiagnosticComponent extends Component <any, IState>{
 
@@ -50,8 +72,25 @@ class DiagnosticComponent extends Component <any, IState>{
             questions: null,
             questionSingle: null,
             results: null,
-            response: null
+            response: null,
+            emergencyNumbers : null
         }
+    }
+
+    componentDidMount() {
+        Promise.all([XforceAPI.getEmergencyNumbers()]).then( res => {
+            this.setState({
+                emergencyNumbers: (res && res[0] && res[0].data) || []
+            });
+        });
+    }
+
+    searchDepartmentNumbers = (department: string) => {
+        if(this.state.emergencyNumbers){
+            const ans = this.state.emergencyNumbers.departamentos.find(x => x.departamento === department);
+            return ans && ans.numeros ? ans.numeros : [];
+        }
+        return [];
     }
 
     prepareRequestFromSelects = () => {
@@ -366,6 +405,12 @@ class DiagnosticComponent extends Component <any, IState>{
                     Siguiente
                     </Button>
                 }
+                { this.state.results && (this.state.results.triage_level === EMERGENCY_LEVEL_4 || this.state.results.triage_level === EMERGENCY_LEVEL_5) &&
+                (
+                    <React.Fragment>
+                        {this.searchDepartmentNumbers(this.state.departamento).map(elem => <div className="emergency-phone"><a href={`tel:${elem.numero}`}>{elem.descripcion}</a><PhoneEnabledIcon /></div>)}
+                    </React.Fragment>
+                )}
                 { this.state.results &&
                 <Button variant="contained" onClick={() => this.onEnd()} endIcon={<NavigateNextIcon />}>
                     Finalizar
