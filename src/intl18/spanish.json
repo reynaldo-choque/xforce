@@ -3,5 +3,7 @@
   "symptom.title": "Síntomas",
   "serious": "Serio",
   "normal": "Normal",
-  "emergency": "Emergencia (vaya al hospital o pida ayuda)"
+  "emergency": "Emergencia (vaya al hospital o pida ayuda)",
+  "male": "Masculino",
+  "female": "Femenino"
 }

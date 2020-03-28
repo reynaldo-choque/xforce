@@ -2,6 +2,10 @@ import React, {Component} from 'react'
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import XforceAPI from "../Services/XforceAPI";
+import {injectIntl} from 'react-intl';
+
+const uuidv4 = require('uuid/v4');
+
 import {
     FormControl,
     FormControlLabel,
@@ -74,7 +78,6 @@ class DiagnosticComponent extends Component <any, IState>{
     }
 
     continue = () => {
-
         this.setState({
             disabled: true
         });
@@ -184,55 +187,76 @@ class DiagnosticComponent extends Component <any, IState>{
     }
 
     render() {
+        const {intl} = this.props;
         return (
             <div className="Diagnostic">
                 <Typography className={"title"} variant="h4">Consulta tu salud</Typography>
-                <FormControl className="inputFull" disabled={this.state.disabled}>
-                    <InputLabel id="input-dep">Departamento</InputLabel>
-                    <Select
-                        labelId="input-dep"
-                        id="departamento"
-                        value={this.state.departamento}
-                        onChange={this.onChangeDepartamento}
-                    >
-                        <MenuItem value="Beni">Beni</MenuItem>
-                        <MenuItem value="Chuquisaca">Chuquisaca</MenuItem>
-                        <MenuItem value="Cochabamba">Cochabamba</MenuItem>
-                        <MenuItem value="La Paz">La Paz</MenuItem>
-                        <MenuItem value="Oruro">Oruro</MenuItem>
-                        <MenuItem value="Pando">Pando</MenuItem>
-                        <MenuItem value="Potosi">Potosi</MenuItem>
-                        <MenuItem value="Santa Cruz">Santa Cruz</MenuItem>
-                        <MenuItem value="Tarija">Tarija</MenuItem>
-                    </Select>
-                </FormControl>
-                <FormControl className="input" disabled={this.state.disabled}>
-                    <InputLabel id="demo-simple-select-label">Sexo</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="sexo"
-                        value={this.state.sex}
-                        onChange={this.onChangeSex}
-                    >
-                        <MenuItem value="female">Femenino</MenuItem>
-                        <MenuItem value="male">Masculino</MenuItem>
-                    </Select>
-                </FormControl>
-                <FormControl className="input" disabled={this.state.disabled}>
-                    <InputLabel id="demo-simple-select-label">Edad</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="edad"
-                        onChange={this.onChangeAge}
-                        value={this.state.age}
-                    >
-                        {
-                            Array.from(Array(101).keys()).map(age => {
-                                return (<option key={age} value={age}>{age}</option>)
-                            })
-                        }
-                    </Select>
-                </FormControl>
+                { !this.state.disabled && (
+                    <React.Fragment>
+                        <FormControl className="inputFull" disabled={this.state.disabled}>
+                            <InputLabel id="input-dep">Departamento</InputLabel>
+                            <Select
+                                labelId="input-dep"
+                                id="departamento"
+                                value={this.state.departamento}
+                                onChange={this.onChangeDepartamento}
+                            >
+                                <MenuItem value="Beni">Beni</MenuItem>
+                                <MenuItem value="Chuquisaca">Chuquisaca</MenuItem>
+                                <MenuItem value="Cochabamba">Cochabamba</MenuItem>
+                                <MenuItem value="La Paz">La Paz</MenuItem>
+                                <MenuItem value="Oruro">Oruro</MenuItem>
+                                <MenuItem value="Pando">Pando</MenuItem>
+                                <MenuItem value="Potosi">Potosi</MenuItem>
+                                <MenuItem value="Santa Cruz">Santa Cruz</MenuItem>
+                                <MenuItem value="Tarija">Tarija</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <FormControl className="input" disabled={this.state.disabled}>
+                            <InputLabel id="demo-simple-select-label">Sexo</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="sexo"
+                                value={this.state.sex}
+                                onChange={this.onChangeSex}
+                            >
+                                <MenuItem value="female">Femenino</MenuItem>
+                                <MenuItem value="male">Masculino</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <FormControl className="input" disabled={this.state.disabled}>
+                            <InputLabel id="demo-simple-select-label">Edad</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="edad"
+                                onChange={this.onChangeAge}
+                                value={this.state.age}
+                            >
+                                {
+                                    Array.from(Array(101).keys()).map(age => {
+                                        return (<option key={age} value={age}>{age}</option>)
+                                    })
+                                }
+                            </Select>
+                        </FormControl>
+                    </React.Fragment>
+                )}
+                { this.state.disabled && (
+                    <React.Fragment>
+                        <Typography variant="body2" component="h1">
+                            Departamento
+                        </Typography>
+                        <InputLabel key={uuidv4()} className="titleQuestion">{this.state.departamento}</InputLabel>
+                        <Typography variant="body2" component="h1">
+                            Edad
+                        </Typography>
+                        <InputLabel key={uuidv4()} className="titleQuestion">{this.state.age}</InputLabel>
+                        <Typography variant="body2" component="h1">
+                            Sexo
+                        </Typography>
+                        <InputLabel key={uuidv4()} className="titleQuestion">{intl.formatMessage({id: this.state.sex})}</InputLabel>
+                    </React.Fragment>
+                )}
                 <br/>
                 {
                     this.state.response && !this.state.response.should_stop && this.state.response.question.explanation &&
@@ -354,4 +378,4 @@ class DiagnosticComponent extends Component <any, IState>{
 
 }
 
-export default DiagnosticComponent;
+export default injectIntl(DiagnosticComponent);
