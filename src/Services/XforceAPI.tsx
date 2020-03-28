@@ -55,11 +55,9 @@ class ApiService {
     getAllSymptoms = () => {
         return axios.get(SYMPTOMS_FACTORS_API_BASE_URL, {headers: headers});
     }
-    
+
     getEmergencyNumbers = () => {
-        return axios.get(EMERGENCY_NUMBERS_API_BASE_URL, {headers: {
-            "Content-Type" :"application/json",
-        }});
+        return axios.get(EMERGENCY_NUMBERS_API_BASE_URL, {headers: headerOwn});
     }
 }
 

@@ -1,5 +1,3 @@
-const uuidv4 = require('uuid/v4');
-
 import React, {Component} from 'react'
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -26,6 +24,7 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import './main.css';
 import {IDiagnostic} from "../Interfaces";
 import {TypeQuestionEnum} from "../enums/TypeQuestionEnum";
+import { uuidv4 }from 'uuid/v4';
 
 interface IState {
     diagnostic: IDiagnostic | null;
