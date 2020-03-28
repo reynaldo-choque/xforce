@@ -24,7 +24,7 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import './main.css';
 import {IDiagnostic} from "../Interfaces";
 import {TypeQuestionEnum} from "../enums/TypeQuestionEnum";
-import { uuidv4 }from 'uuid/v4';
+import { v4 as uuidv4 } from 'uuid';
 
 interface IState {
     diagnostic: IDiagnostic | null;
