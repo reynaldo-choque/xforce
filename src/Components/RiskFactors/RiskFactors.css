@@ -1,0 +1,35 @@
+.risk-factors.title {
+    color: black;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: underline;
+    text-transform: uppercase;
+}
+
+.risk-factors.list {
+   border: none;
+}
+
+.risk-factors.list.item {
+    border: 2px black solid;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.risk-factors.list.item.normal-risk {
+    color: #f0e130;
+    border: none;
+    font-size: 40px;
+}
+
+.risk-factors.list.item.serious-risk {
+    color: red;
+    border: none;
+    font-size: 40px;
+}
+
+.symptom.list.item.emergency-RISK {
+    color: 	#940000;
+    border: none;
+    font-size: 40px;
+}

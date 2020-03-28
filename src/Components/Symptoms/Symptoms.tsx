@@ -1,11 +1,21 @@
 import * as React from 'react';
 import XforceAPI from "../../Services/XforceAPI";
-import { injectIntl } from 'react-intl';
+import {injectIntl} from 'react-intl';
 
 import List from '@material-ui/core/List';
 import ListItem, {ListItemProps} from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import Divider from '@material-ui/core/Divider';
+import WarningIcon from '@material-ui/icons/Warning';
+import ErrorIcon from '@material-ui/icons/Error';
+import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
 
+//CONSTANTS
+import {SERIOUS_SYMPTOM, NORMAL_SYMPTOM, EMERGENCY_SYMPTOM} from "../../utils/Constants";
+
+import "./Symptoms.css";
+import ambulance from "../../images/ambulance.png";
 
 interface ISymtom {
     category: any,
@@ -37,19 +47,27 @@ class Symptoms extends React.Component <any, any> {
     }
 
     render() {
-        console.log(this.props);
         const {intl} = this.props;
         return (
             <React.Fragment>
-                <div>Factores de Riesgo</div>
+                <div className={"symptom title"}>{intl.formatMessage({id: 'symptom.title'})}</div>
                 <List component="nav" aria-label="main mailbox folders">
                     {
-                        this.state.symptoms.map((symtom, i) =>
-                            (<ListItem button>
+                        this.state.symptoms.map((symptom, i) =>
+                            (<ListItem button className={"symptom list item"}>
                                 <ListItemText
-                                    primary={symtom.name}
-                                    secondary={'Nivel de Riesgo: ' + intl.formatMessage({id: 'factor.serious'}) }
+                                    primary={symptom.name}
+                                    secondary={'Nivel de Riesgo: ' + intl.formatMessage({id: symptom.seriousness})}
                                 />
+                                {symptom.seriousness === NORMAL_SYMPTOM && (<ListItemIcon><ErrorIcon
+                                    className={"symptom list item normal-symptom"}/></ListItemIcon>)}
+                                {symptom.seriousness === SERIOUS_SYMPTOM && (<ListItemIcon><WarningIcon
+                                    className={"symptom list item serious-symptom"}/></ListItemIcon>)}
+                                {symptom.seriousness === EMERGENCY_SYMPTOM && (
+                                    <img src={ambulance} className="symptom ambulance"/>)}
+                                {symptom.seriousness === EMERGENCY_SYMPTOM && (
+                                    <ListItemIcon><LocalHospitalIcon className={"symptom list item emergency-symptom"}/></ListItemIcon>)}
+                                <Divider />
                             </ListItem>)
                         )
                     }
