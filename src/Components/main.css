@@ -49,3 +49,11 @@
     display: flex;
     justify-content: center;
 }
+
+.radioButton {
+    padding: 5px 0;
+}
+
+.radioButton span{
+    font-size: 14px;
+}
