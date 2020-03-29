@@ -1,30 +1,35 @@
 import React, { Component } from 'react'
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import './NavBar.css'
-import {AppBar, IconButton, Toolbar, Typography} from "@material-ui/core";
+import {
+    AppBar,
+    Avatar, Button,
+    Dialog, DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+    IconButton,
+    Toolbar,
+    Typography
+} from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 import { withRouter } from 'react-router-dom';
 import ReplayIcon from '@material-ui/icons/Replay';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import TocIcon from '@material-ui/icons/Toc';
 import AcUnitIcon from '@material-ui/icons/AcUnit';
-
-const style = {
-    flexGrow: 1
-}
+import BoliviaUnida from "../images/BoliviaUnida.png";
 
 class NavBar extends Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
-            left: false
+            left: false,
+            showMessage: false
         }
     }
 
@@ -50,6 +55,11 @@ class NavBar extends Component<any, any> {
         this.props.history.push(screen);
     };
 
+    showQuedateEnCasa = (show: boolean) => {
+        this.setState({
+            showMessage: show
+        });
+    }
     list = () => (
         <div
             className={"ListSidebar"}
@@ -84,6 +94,7 @@ class NavBar extends Component<any, any> {
     );
 
     render() {
+        const { showMessage } = this.state;
         return (
             <div>
                 <AppBar position="fixed">
@@ -91,12 +102,17 @@ class NavBar extends Component<any, any> {
                         <IconButton edge="start" color="inherit" aria-label="Menu" onClick={this.toggleDrawer(true)}>
                             <MenuIcon/>
                         </IconButton>
-                        <Typography variant="h6" style={style}>
-                            Diagnóstico Covid19
-                        </Typography>
+                        <Typography variant="subtitle1" className="titleNav">
+                            Test Covid19<br/>
+                            <Typography variant="caption" className="subtitleNav">
+                                Coranavirus
+                            </Typography>
+                        </Typography><br/>
                         <IconButton aria-label="replay" color="inherit" onClick={this.replay} >
                             <ReplayIcon />
                         </IconButton>
+                        <Avatar alt="BoliviaUnida" src={BoliviaUnida} className="nuestraBandera"
+                            onClick={()=>this.showQuedateEnCasa(true)}/>
                     </Toolbar>
                 </AppBar>
                 <div className="SpaceBottom"></div>
@@ -109,8 +125,26 @@ class NavBar extends Component<any, any> {
                         {this.list()}
                     </SwipeableDrawer>
                 </React.Fragment>
+                <Dialog
+                    open={showMessage}
+                    onClose={()=>this.showQuedateEnCasa(false)}
+                >
+                    <DialogTitle id="alert-dialog-title" className="dialog">{"#QuedateEnCasa"}</DialogTitle>
+                    <DialogContent className="dialog">
+                        {"Cuidemos a los nuestros"}
+                        <DialogContentText id="alert-dialog-description">
+                            <span className="rojo">{"La Unión "}</span>
+                            <span className="amarillo">{"es la "}</span>
+                            <span className="verde">{"Fuerza"}</span>
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={() => this.showQuedateEnCasa(false)} color="primary">
+                            Me quedo en casa
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </div>
-
         );
     }
 }

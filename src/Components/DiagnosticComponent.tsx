@@ -9,6 +9,7 @@ import PhoneEnabledIcon from '@material-ui/icons/PhoneEnabled';
 import { EMERGENCY_LEVEL_4, EMERGENCY_LEVEL_5} from "../utils/Constants";
 
 import {
+    Divider,
     FormControl,
     FormControlLabel,
     FormHelperText,
@@ -229,13 +230,32 @@ class DiagnosticComponent extends Component <any, IState>{
         return (
             <div className="Diagnostic">
                 <Typography variant="h6" component="h2" className={"title"}>
-                    Realiza tu diagnóstico
-                </Typography>
-                <Typography variant="body1" component="h2">
-                    Se responsable con las preguntas
+                    Realiza el test
                 </Typography>
                 { !this.state.disabled && (
                     <React.Fragment>
+                        <Typography variant="body2" component="h2" className="titleService result">
+                            • El test no es un diagnóstico final
+                            <Typography variant="caption" component="h2" className="contentService">
+                                El test es solo para fines informativos y no representa,
+                                de ninguna manera, una opinión médica final.
+                            </Typography>
+                        </Typography>
+                        <Typography variant="body2" component="h2" className="titleService result">
+                            • El test y sus resultados
+                            <Typography variant="caption" component="h2" className="contentService">
+                                Se basan completamente en las pautas de la OMS(Organización Mundial de la Salud) y los
+                                CDC(Centros para el Control y Prevención de Enfermedades) sobre COVID-19.
+                            </Typography>
+                        </Typography>
+                        <Typography variant="body2" component="h2" className="titleService result">
+                            • En caso de emergencia
+                            <Typography variant="caption" component="h2" className="contentService">
+                                Llame al número de emergencia de su departamento de inmediato.
+                                No continúe con este test.
+                            </Typography>
+                        </Typography>
+                        <Divider/>
                         <Grid container spacing={0}>
                             <Grid item xs={12}>
                                 <FormControl className="inputFull" disabled={this.state.disabled}>
@@ -405,8 +425,6 @@ class DiagnosticComponent extends Component <any, IState>{
                         </>
                     }
                 </>
-                <br/>
-                <br/>
                 {
                     this.state.results &&
                     <div className="result">

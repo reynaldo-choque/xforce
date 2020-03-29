@@ -9,3 +9,32 @@
 .SpaceBottom {
     margin-bottom: 65px;
 }
+
+.titleNav {
+    flex: 1;
+    line-height: 15px !important;
+}
+.subtitleNav {
+    flex: 1;
+    inset-block: auto;
+}
+
+.nuestraBandera{
+    border: 1px solid #F8F8FD;
+    box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.dialog {
+    background-color: #404040;
+    color: #F8F8FD;
+}
+
+.dialog .rojo {
+    color: red;
+}
+.dialog .amarillo {
+    color: yellow;
+}
+.dialog .verde {
+    color: green;
+}
