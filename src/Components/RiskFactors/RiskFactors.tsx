@@ -51,7 +51,7 @@ class RiskFactors extends React.Component <any, any> {
                     <Typography variant="h6" component="h2">
                         {intl.formatMessage({id: 'risk.factors.title'})}
                     </Typography></div>
-                <List aria-label="factors list" className={"risk-factors list"}>
+                <List className={"risk-factors list"}>
                     {
                         this.state.factors.map((risk, i) =>
                             (<ListItem button className={"risk-factors list item"}>

@@ -99,7 +99,7 @@ class NavBar extends Component<any, any> {
             <div>
                 <AppBar position="fixed">
                     <Toolbar className="PrimaryColor TextHeader">
-                        <IconButton edge="start" color="inherit" aria-label="Menu" onClick={this.toggleDrawer(true)}>
+                        <IconButton edge="start" color="inherit" onClick={this.toggleDrawer(true)}>
                             <MenuIcon/>
                         </IconButton>
                         <Typography variant="subtitle1" className="titleNav">
@@ -108,7 +108,7 @@ class NavBar extends Component<any, any> {
                                 Coranavirus
                             </Typography>
                         </Typography><br/>
-                        <IconButton aria-label="replay" color="inherit" onClick={this.replay} >
+                        <IconButton color="inherit" onClick={this.replay} >
                             <ReplayIcon />
                         </IconButton>
                         <Avatar alt="BoliviaUnida" src={BoliviaUnida} className="nuestraBandera"
