@@ -174,7 +174,7 @@ class DiagnosticComponent extends Component <any, IState>{
          this.setState({
             questionSingle: evidence
         }, () => {
-            console.log(this.state.questionSingle[0].id);
+            console.info(this.state.questionSingle[0].id);
         })
     };
 
@@ -411,7 +411,7 @@ class DiagnosticComponent extends Component <any, IState>{
                         <>
                             <FormControl className="symptom" key={"Singleform"}>
                                 <FormLabel component="legend">{this.state.response.question.text}</FormLabel>
-                                <RadioGroup aria-label="ALGO" name="SINGLE"
+                                <RadioGroup name="SINGLE"
                                             value={this.state.questionSingle ?
                                                 this.state.questionSingle[0].id: ' '}
                                             onChange={this.onChangeGroupSingle}>

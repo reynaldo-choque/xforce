@@ -56,7 +56,7 @@ class Symptoms extends React.Component <any, any> {
                         {intl.formatMessage({id: 'symptom.title'})}
                     </Typography>
                 </div>
-                <List component="nav" aria-label="main mailbox folders">
+                <List component="nav">
                     {
                         this.state.symptoms.map((symptom, i) =>
                             (<ListItem button className={"symptom list item"}>

@@ -7,8 +7,6 @@ import spanish from "./intl18/spanish.json"
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-console.log(spanish);
-
 ReactDOM.render(
     <IntlProvider locale='es' messages={spanish}>
         <App />
