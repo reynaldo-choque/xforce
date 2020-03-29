@@ -12,6 +12,9 @@ import {AppBar, IconButton, Toolbar, Typography} from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 import { withRouter } from 'react-router-dom';
 import ReplayIcon from '@material-ui/icons/Replay';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import TocIcon from '@material-ui/icons/Toc';
+import AcUnitIcon from '@material-ui/icons/AcUnit';
 
 const style = {
     flexGrow: 1
@@ -56,26 +59,26 @@ class NavBar extends Component<any, any> {
         >
             <List>
                 <ListItem button key="id1" onClick={()=>this.goTo('/')}>
-                    <ListItemIcon><InboxIcon/></ListItemIcon>
-                    <ListItemText primary="Diagnostico">
+                    <ListItemIcon><AssignmentIcon/></ListItemIcon>
+                    <ListItemText primary="Diagnóstico">
                     </ListItemText>
                 </ListItem>
                 <ListItem button key="id2" onClick={()=>this.goTo('/factores')}>
-                    <ListItemIcon><InboxIcon/></ListItemIcon>
+                    <ListItemIcon><TocIcon/></ListItemIcon>
                     <ListItemText primary="Factores de Riesgo">
                     </ListItemText>
                 </ListItem>
                 <ListItem button key="id3" onClick={()=>this.goTo('/sintomas')}>
-                    <ListItemIcon><InboxIcon/></ListItemIcon>
+                    <ListItemIcon><AcUnitIcon/></ListItemIcon>
                     <ListItemText primary="Síntomas">
                     </ListItemText>
                 </ListItem>
-                <Divider/>
-                <ListItem button key="id4" onClick={()=>this.goTo('/numerosEmergencia')}>
-                    <ListItemIcon><InboxIcon/></ListItemIcon>
-                    <ListItemText primary="Números de emergencia">
-                    </ListItemText>
-                </ListItem>
+                {/*<Divider/>*/}
+                {/*<ListItem button key="id4" onClick={()=>this.goTo('/numerosEmergencia')}>*/}
+                {/*    <ListItemIcon><InboxIcon/></ListItemIcon>*/}
+                {/*    <ListItemText primary="Números de emergencia">*/}
+                {/*    </ListItemText>*/}
+                {/*</ListItem>*/}
             </List>
         </div>
     );

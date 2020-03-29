@@ -1,4 +1,28 @@
 .Diagnostic {
+    margin-top: 50px;
+}
+
+.Diagnostic .explanation{
+    margin-top: 20px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px #e3e3e3 solid;
+    border-left: 5px #f2bf31 solid;
+}
+
+.Diagnostic .detailsQuiz {
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.Diagnostic .titleInformation {
+    color: #235588;
+}
+
+.Diagnostic .textInformation {
+    color: #404040;
 }
 
 .Diagnostic .AgeHeight {
@@ -8,19 +32,39 @@
 
 .Diagnostic .input {
     width: 150px;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: white;
 }
 .Diagnostic .inputFull {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: left;
 }
 
+.Diagnostic .inputFull .titleSelect {
+    padding: 10px;
+    font-size: larger;
+    color: #235588;
+}
+
+.Diagnostic .input .titleSelect {
+    margin-bottom: 20px;
+    color: #202020;
+    padding: 5px;
+    font-size: larger;
+}
 .Diagnostic .symptom {
     width: 100%;
     margin-top: 20px;
     text-align: left;
-    background-color: #f9f9f9;
+    background-color: white;
+    border-radius: 5px;
     padding: 2px;
+    color: #202020;
 }
 
 .Diagnostic .symptom .span .radioButton {
@@ -29,25 +73,31 @@
 
 .Diagnostic .symptom .select{
     text-align: center;
+    margin-top: 25px;
 }
 
 .Diagnostic .symptom .titleQuestion{
     font-weight: bold;
     padding: 5px;
+    color: #505050;
+    font-size: larger;
 }
 
 .Diagnostic .helpText{
     text-align: justify;
-    background-color: #e0e0e0;
+    background-color: #FDFDFD;
     border-radius: 5px;
     padding: 5px;
     line-height: inherit;
+    color: #303030;
+    border: 2px #f8f8f8 solid;
+    font-size: small;
 }
 
 .Diagnostic .title {
-    margin-bottom: 20px;
     display: flex;
     justify-content: center;
+    font-weight: bold;
 }
 
 .radioButton {
@@ -72,4 +122,12 @@
     font-size: 25px;
     margin-left: 10px;
     vertical-align: bottom;
+}
+
+.Diagnostic .result {
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 3px #EFF4FA solid;
 }

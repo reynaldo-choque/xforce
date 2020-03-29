@@ -12,7 +12,7 @@ import {
     FormControl,
     FormControlLabel,
     FormHelperText,
-    FormLabel,
+    FormLabel, Grid,
     InputLabel,
     MenuItem,
     Radio,
@@ -228,78 +228,98 @@ class DiagnosticComponent extends Component <any, IState>{
         const {intl} = this.props;
         return (
             <div className="Diagnostic">
-                <Typography className={"title"} variant="h4">Consulta tu salud</Typography>
+                <Typography variant="h6" component="h2" className={"title"}>
+                    Realiza tu diagnóstico
+                </Typography>
+                <Typography variant="body1" component="h2">
+                    Se responsable con las preguntas
+                </Typography>
                 { !this.state.disabled && (
                     <React.Fragment>
-                        <FormControl className="inputFull" disabled={this.state.disabled}>
-                            <InputLabel id="input-dep">Departamento</InputLabel>
-                            <Select
-                                labelId="input-dep"
-                                id="departamento"
-                                value={this.state.departamento}
-                                onChange={this.onChangeDepartamento}
-                            >
-                                <MenuItem value="Beni">Beni</MenuItem>
-                                <MenuItem value="Chuquisaca">Chuquisaca</MenuItem>
-                                <MenuItem value="Cochabamba">Cochabamba</MenuItem>
-                                <MenuItem value="La Paz">La Paz</MenuItem>
-                                <MenuItem value="Oruro">Oruro</MenuItem>
-                                <MenuItem value="Pando">Pando</MenuItem>
-                                <MenuItem value="Potosi">Potosi</MenuItem>
-                                <MenuItem value="Santa Cruz">Santa Cruz</MenuItem>
-                                <MenuItem value="Tarija">Tarija</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <FormControl className="input" disabled={this.state.disabled}>
-                            <InputLabel id="demo-simple-select-label">Sexo</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="sexo"
-                                value={this.state.sex}
-                                onChange={this.onChangeSex}
-                            >
-                                <MenuItem value="female">Femenino</MenuItem>
-                                <MenuItem value="male">Masculino</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <FormControl className="input" disabled={this.state.disabled}>
-                            <InputLabel id="demo-simple-select-label">Edad</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="edad"
-                                onChange={this.onChangeAge}
-                                value={this.state.age}
-                            >
-                                {
-                                    Array.from(Array(101).keys()).map(age => {
-                                        return (<option key={age} value={age}>{age}</option>)
-                                    })
-                                }
-                            </Select>
-                        </FormControl>
+                        <Grid container spacing={0}>
+                            <Grid item xs={12}>
+                                <FormControl className="inputFull" disabled={this.state.disabled}>
+                                    <InputLabel id="input-dep" className="titleSelect">Departamento</InputLabel>
+                                    <Select
+                                        labelId="input-dep"
+                                        id="departamento"
+                                        value={this.state.departamento}
+                                        onChange={this.onChangeDepartamento}
+                                    >
+                                        <MenuItem value="Beni">Beni</MenuItem>
+                                        <MenuItem value="Chuquisaca">Chuquisaca</MenuItem>
+                                        <MenuItem value="Cochabamba">Cochabamba</MenuItem>
+                                        <MenuItem value="La Paz">La Paz</MenuItem>
+                                        <MenuItem value="Oruro">Oruro</MenuItem>
+                                        <MenuItem value="Pando">Pando</MenuItem>
+                                        <MenuItem value="Potosi">Potosi</MenuItem>
+                                        <MenuItem value="Santa Cruz">Santa Cruz</MenuItem>
+                                        <MenuItem value="Tarija">Tarija</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <FormControl className="input" disabled={this.state.disabled}>
+                                    <InputLabel id="demo-simple-select-label" className={"titleSelect"}>Sexo</InputLabel>
+                                    <Select
+                                        labelId="demo-simple-select-label"
+                                        id="sexo"
+                                        value={this.state.sex}
+                                        onChange={this.onChangeSex}
+                                    >
+                                        <MenuItem value="female">Femenino</MenuItem>
+                                        <MenuItem value="male">Masculino</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <FormControl className="input" disabled={this.state.disabled}>
+                                    <InputLabel id="demo-simple-select-label" className={"titleSelect"}>Edad</InputLabel>
+                                    <Select
+                                        labelId="demo-simple-select-label"
+                                        id="edad"
+                                        onChange={this.onChangeAge}
+                                        value={this.state.age}
+                                    >
+                                        {
+                                            Array.from(Array(101).keys()).map(age => {
+                                                return (<option key={age} value={age}>{age}</option>)
+                                            })
+                                        }
+                                    </Select>
+                                </FormControl>
+                            </Grid>
+                        </Grid>
                     </React.Fragment>
                 )}
                 { this.state.disabled && (
                     <React.Fragment>
-                        <Typography variant="body2" component="h1">
-                            Departamento
-                        </Typography>
-                        <InputLabel key={uuidv4()} className="titleQuestion">{this.state.departamento}</InputLabel>
-                        <Typography variant="body2" component="h1">
-                            Edad
-                        </Typography>
-                        <InputLabel key={uuidv4()} className="titleQuestion">{this.state.age}</InputLabel>
-                        <Typography variant="body2" component="h1">
-                            Sexo
-                        </Typography>
-                        <InputLabel key={uuidv4()} className="titleQuestion">{intl.formatMessage({id: this.state.sex})}</InputLabel>
+                        <Grid container spacing={0} className="detailsQuiz">
+                            <Grid item xs>
+                                <Typography variant="body2" component="h1" className="titleInformation">
+                                    Departamento
+                                </Typography>
+                                <InputLabel key={uuidv4()} className="textInformation">{this.state.departamento}</InputLabel>
+                            </Grid>
+                            <Grid item xs>
+                                <Typography variant="body2" component="h1" className="titleInformation">
+                                    Edad
+                                </Typography>
+                                <InputLabel key={uuidv4()} className="textInformation">{this.state.age}</InputLabel>
+                            </Grid>
+                            <Grid item xs>
+                                <Typography variant="body2" component="h1" className="titleInformation">
+                                    Sexo
+                                </Typography>
+                                <InputLabel key={uuidv4()} className="textInformation">{intl.formatMessage({id: this.state.sex})}</InputLabel>
+                            </Grid>
+                        </Grid>
                     </React.Fragment>
                 )}
-                <br/>
                 {
                     this.state.response && !this.state.response.should_stop && this.state.response.question.explanation &&
                         <>
-                            <Typography variant="body2" component="h1">
+                            <Typography variant="body2" component="h1" className="explanation">
                                 {this.state.response.question.explanation}
                             </Typography>
                         </>
@@ -376,7 +396,7 @@ class DiagnosticComponent extends Component <any, IState>{
                                                 this.state.questionSingle[0].id: ' '}
                                             onChange={this.onChangeGroupSingle}>
                                     {this.state.response.question.items.map((item:any)=> {
-                                        return(<><FormControlLabel value={item.id} control={<Radio size="small" />} label={item.name} className="radioButton"/></>)
+                                        return(<><FormControlLabel value={item.id} control={<Radio size="small" color="primary"/>} label={item.name} className="radioButton"/></>)
                                     })
                                     }
                                 </RadioGroup>
@@ -389,15 +409,15 @@ class DiagnosticComponent extends Component <any, IState>{
                 <br/>
                 {
                     this.state.results &&
-                        <>
-                            <Typography variant="body2" component="h1">
-                                {this.state.results.description}
-                            </Typography>
-                            <Typography variant="body1" component="h1">
-                                {this.state.results.label}
-                            </Typography>
-                            <br/>
-                        </>
+                    <div className="result">
+                        <Typography variant="body2" component="h1">
+                            {this.state.results.description}
+                        </Typography>
+                        <Typography variant="body1" component="h1">
+                            {this.state.results.label}
+                        </Typography>
+                        <br/>
+                    </div>
                 }
                 { !this.state.results &&
                     <Button variant="contained" onClick={() => this.continue()} endIcon={<NavigateNextIcon/>}>
