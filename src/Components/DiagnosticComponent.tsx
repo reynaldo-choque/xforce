@@ -6,7 +6,7 @@ import {injectIntl} from 'react-intl';
 import PhoneEnabledIcon from '@material-ui/icons/PhoneEnabled';
 
 //CONSTANTS
-import { EMERGENCY_LEVEL_4, EMERGENCY_LEVEL_5} from "../utils/Constants";
+import {EMERGENCY_LEVEL_4, EMERGENCY_LEVEL_5, EMERGENCY_NUMBERS} from "../utils/Constants";
 
 import {
     Divider,
@@ -78,16 +78,16 @@ class DiagnosticComponent extends Component <any, IState>{
     }
 
     componentDidMount() {
-        Promise.all([XforceAPI.getEmergencyNumbers()]).then( res => {
+       // Promise.all([XforceAPI.getEmergencyNumbers()]).then( res => {
             this.setState({
-                emergencyNumbers: (res && res[0] && res[0].data) || []
+                emergencyNumbers: EMERGENCY_NUMBERS //(res && res[0] && res[0].data) || []
             });
-        });
+        // });
     }
 
     searchDepartmentNumbers = (department: string) => {
         if(this.state.emergencyNumbers){
-            const ans = this.state.emergencyNumbers.departamentos.find(x => x.departamento === department);
+            const ans = this.state.emergencyNumbers.departamentos.find(x => x.departamento === department || x.departamento === 'Nacional');
             return ans && ans.numeros ? ans.numeros : [];
         }
         return [];
@@ -272,7 +272,7 @@ class DiagnosticComponent extends Component <any, IState>{
                                         <MenuItem value="La Paz">La Paz</MenuItem>
                                         <MenuItem value="Oruro">Oruro</MenuItem>
                                         <MenuItem value="Pando">Pando</MenuItem>
-                                        <MenuItem value="Potosi">Potosi</MenuItem>
+                                        <MenuItem value="Potosí">Potosí</MenuItem>
                                         <MenuItem value="Santa Cruz">Santa Cruz</MenuItem>
                                         <MenuItem value="Tarija">Tarija</MenuItem>
                                     </Select>
@@ -427,7 +427,7 @@ class DiagnosticComponent extends Component <any, IState>{
                 </>
                 {
                     this.state.results &&
-                    <div className="result">
+                    <div className={"result "+ this.state.results.triage_level}>
                         <Typography variant="body2" component="h1">
                             {this.state.results.description}
                         </Typography>
@@ -445,9 +445,18 @@ class DiagnosticComponent extends Component <any, IState>{
                 { this.state.results && (this.state.results.triage_level === EMERGENCY_LEVEL_4 || this.state.results.triage_level === EMERGENCY_LEVEL_5) &&
                 (
                     <React.Fragment>
-                        {this.searchDepartmentNumbers(this.state.departamento).map(elem => <div className="emergency-phone"><a href={`tel:${elem.numero}`}>{elem.descripcion}</a><PhoneEnabledIcon /></div>)}
+                        {this.searchDepartmentNumbers(this.state.departamento).map(elem =>
+                            <div className="emergency-phone">
+                                <Typography variant="subtitle2" component="h2">
+                                    {elem.descripcion+ ":" + elem.numero}
+                                    <a href={`tel:${elem.numero}`}><PhoneEnabledIcon /></a>
+                                </Typography>
+                            </div>)
+                        }
+                        <br/>
                     </React.Fragment>
-                )}
+                )
+                }
                 { this.state.results &&
                 <Button variant="contained" onClick={() => this.onEnd()} endIcon={<NavigateNextIcon />}>
                     Finalizar

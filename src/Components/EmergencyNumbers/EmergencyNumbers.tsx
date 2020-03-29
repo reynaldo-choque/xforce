@@ -7,6 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import './EmergencyNumbers.css'
 import {Divider, IconButton, ListItemSecondaryAction, ListSubheader, Typography} from "@material-ui/core";
 import PhoneEnabledIcon from '@material-ui/icons/PhoneEnabled';
+import {EMERGENCY_NUMBERS} from "../../utils/Constants";
 
 interface IState {
     emergencyNumbers : INumberEmergency | null
@@ -37,15 +38,11 @@ class EmergencyNumbers extends React.Component<any, IState> {
     }
 
     componentDidMount() {
-        XforceAPI.getEmergencyNumbers().then(res => {
-            console.warn(res.data);
+        // XforceAPI.getEmergencyNumbers().then(res => {
             this.setState({
-                emergencyNumbers: (res && res.data) || []
-            },
-                () =>{
-                console.warn('----',this.state.emergencyNumbers!.departamentos[0].numeros);
-                });
-        });
+                emergencyNumbers: EMERGENCY_NUMBERS //(res && res.data) || []
+            });
+        // });
     }
 
     render() {
@@ -58,7 +55,7 @@ class EmergencyNumbers extends React.Component<any, IState> {
                     {   this.state.emergencyNumbers && this.state.emergencyNumbers!.departamentos.map((dep: IDepartamento) => (
                         <li key={`section-${dep.departamento}`} className="sectionId">
                             <ul key={`ul-${dep._id}`}>
-                                <ListSubheader className={"subtitle"}>{`Departamento ${dep.departamento}`}</ListSubheader>
+                                <ListSubheader className={"subtitle"}>{dep.departamento}</ListSubheader>
                                 {dep.numeros.map((numero:INumeros) => (
                                     <ListItem key={`item-${dep.departamento}-${numero.descripcion}`} className="listItem">
                                         <ListItemText key={numero.descripcion} primary={numero.descripcion}

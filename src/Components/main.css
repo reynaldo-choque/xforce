@@ -109,28 +109,56 @@
 }
 
 .emergency-phone {
-    margin: 15px 0;
-    color: green;
+    margin: 1px 0;
+    border-radius: 5px;
+    color: #235588;
+    background-color: white;
+    padding: 5px;
 }
 
 .emergency-phone a{
-    font-size: 20px;
-    text-transform: uppercase;
+    padding: 7px;
+    color: #6CCE52;
 }
 
 .emergency-phone svg{
-    font-size: 25px;
-    margin-left: 10px;
-    vertical-align: bottom;
+    text-align: center;
+    font-size: 30px;
+    vertical-align: center;
 }
 
 .Diagnostic .result {
-    background-color: white;
     padding: 10px;
     margin-bottom: 10px;
-    border-radius: 5px;
-    border: 3px #EFF4FA solid;
+    border-radius: 10px;
+    border: 3px #f8f8f8 solid;
 }
+
+.Diagnostic .no_risk{
+    border-left: 10px limegreen solid;
+    background-color: #e4ffe0;
+}
+
+.Diagnostic .self_monitoring{
+    border-left: 10px #a9cd54 solid;
+    background-color: #e8ffd8;
+}
+
+.Diagnostic .quarantine{
+    border-left: 10px khaki solid;
+    background-color: #fbffe3;
+}
+
+.Diagnostic .isolation_call{
+    border-left: 10px red solid;
+    background-color: #ffddd8;
+}
+
+.Diagnostic .isolation_ambulance{
+    border-left: 10px red solid;
+    background-color: #ffddd8;
+}
+
 
 .Diagnostic .titleService {
     background-color: white;

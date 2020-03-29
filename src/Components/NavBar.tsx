@@ -11,7 +11,7 @@ import {
     Dialog, DialogActions,
     DialogContent,
     DialogContentText,
-    DialogTitle,
+    DialogTitle, Divider,
     IconButton,
     Toolbar,
     Typography
@@ -23,6 +23,7 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import TocIcon from '@material-ui/icons/Toc';
 import AcUnitIcon from '@material-ui/icons/AcUnit';
 import BoliviaUnida from "../images/BoliviaUnida.png";
+import PhoneIcon from '@material-ui/icons/Phone';
 
 class NavBar extends Component<any, any> {
     constructor(props: any) {
@@ -83,12 +84,12 @@ class NavBar extends Component<any, any> {
                     <ListItemText primary="Síntomas">
                     </ListItemText>
                 </ListItem>
-                {/*<Divider/>*/}
-                {/*<ListItem button key="id4" onClick={()=>this.goTo('/numerosEmergencia')}>*/}
-                {/*    <ListItemIcon><InboxIcon/></ListItemIcon>*/}
-                {/*    <ListItemText primary="Números de emergencia">*/}
-                {/*    </ListItemText>*/}
-                {/*</ListItem>*/}
+                <Divider/>
+                <ListItem button key="id4" onClick={()=>this.goTo('/numerosEmergencia')}>
+                    <ListItemIcon><PhoneIcon/></ListItemIcon>
+                    <ListItemText primary="Números de emergencia">
+                    </ListItemText>
+                </ListItem>
             </List>
         </div>
     );
