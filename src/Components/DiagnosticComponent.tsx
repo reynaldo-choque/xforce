@@ -158,8 +158,6 @@ class DiagnosticComponent extends Component <any, IState>{
         XforceAPI.getEndResult(request).then(res => {
             this.setState({
                 results: res.data,
-            },() => {
-                // console.warn(this.state.results);
             });
         });
     }
@@ -185,8 +183,6 @@ class DiagnosticComponent extends Component <any, IState>{
         const evidence = [{id: questionId, choice_id: questionValue}];
          this.setState({
             questionSingle: evidence
-        }, () => {
-            console.info(this.state.questionSingle[0].id);
         })
     };
 
@@ -194,7 +190,6 @@ class DiagnosticComponent extends Component <any, IState>{
         const  questionId = event.target.name;
         const  questionValue = (event.target.value as string);
 
-        console.warn(questionId, questionValue);
         const evidence = [{id: questionId, choice_id: questionValue}];
         const answers = this.state.questions ? [...evidence, ...this.state.questions]: evidence;
         let uniques =  this.getUniques(answers, "id");
