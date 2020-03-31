@@ -9,6 +9,10 @@ import PhoneEnabledIcon from '@material-ui/icons/PhoneEnabled';
 import {EMERGENCY_LEVEL_4, EMERGENCY_LEVEL_5, EMERGENCY_NUMBERS} from "../utils/Constants";
 
 import {
+    Dialog,
+    DialogActions,
+    DialogContent, DialogContentText,
+    DialogTitle,
     Divider,
     FormControl,
     FormControlLabel,
@@ -39,6 +43,7 @@ interface IState {
     departamento: string;
     disabled: boolean;
     emergencyNumbers : INumberEmergency | null;
+    showMessage: boolean;
 }
 
 interface INumberEmergency {
@@ -73,7 +78,8 @@ class DiagnosticComponent extends Component <any, IState>{
             questionSingle: null,
             results: null,
             response: null,
-            emergencyNumbers : null
+            emergencyNumbers : null,
+            showMessage: false
         }
     }
 
@@ -83,6 +89,12 @@ class DiagnosticComponent extends Component <any, IState>{
                 emergencyNumbers: EMERGENCY_NUMBERS //(res && res[0] && res[0].data) || []
             });
         // });
+    }
+
+    showQuedateEnCasa = (show: boolean) => {
+        this.setState({
+            showMessage: show
+        });
     }
 
     searchDepartmentNumbers = (department: string) => {
@@ -117,6 +129,10 @@ class DiagnosticComponent extends Component <any, IState>{
     }
 
     continue = () => {
+        if(!this.state.disabled){
+            this.showQuedateEnCasa(true);
+        }
+
         this.setState({
             disabled: true
         });
@@ -227,6 +243,7 @@ class DiagnosticComponent extends Component <any, IState>{
 
     render() {
         const {intl} = this.props;
+        const { showMessage } = this.state;
         return (
             <div className="Diagnostic">
                 <Typography variant="h6" component="h2" className={"title"}>
@@ -462,6 +479,25 @@ class DiagnosticComponent extends Component <any, IState>{
                     Finalizar
                 </Button>}
                 <br/><br/>
+                <Dialog
+                    open={showMessage}
+                    onClose={()=>this.showQuedateEnCasa(false)}
+                >
+                    <DialogTitle id="alert-dialog-title" className="dialog">{"#QuedateEnCasa"}</DialogTitle>
+                    <DialogContent className="dialog">
+                        {"Cuidemos a los nuestros"}
+                        <DialogContentText id="alert-dialog-description">
+                            <span className="rojo">{"La Unión "}</span>
+                            <span className="amarillo">{"es la "}</span>
+                            <span className="verde">{"Fuerza"}</span>
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={() => this.showQuedateEnCasa(false)} color="primary">
+                            Me quedo en casa
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </div>
 
         );

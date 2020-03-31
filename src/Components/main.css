@@ -177,3 +177,18 @@
     line-height: 15px !important;
     text-align: justify;
 }
+
+.dialog {
+    background-color: #404040;
+    color: #F8F8FD;
+}
+
+.dialog .rojo {
+    color: red;
+}
+.dialog .amarillo {
+    color: yellow;
+}
+.dialog .verde {
+    color: green;
+}
