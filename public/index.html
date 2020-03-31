@@ -28,7 +28,7 @@
     <title>Test Covid-19</title>
     <script>
       // before React is loaded
-      if (window.location.port != 3000) {
+      if (window.location.port != 3000 && typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === 'object') {
         window.__REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function() {};
       }
     </script>
