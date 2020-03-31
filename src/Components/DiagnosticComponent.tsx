@@ -129,10 +129,6 @@ class DiagnosticComponent extends Component <any, IState>{
     }
 
     continue = () => {
-        if(!this.state.disabled){
-            this.showQuedateEnCasa(true);
-        }
-
         this.setState({
             disabled: true
         });
@@ -238,6 +234,7 @@ class DiagnosticComponent extends Component <any, IState>{
     };
 
     onEnd = () => {
+        this.showQuedateEnCasa(true);
         this.InitialValues();
     }
 
