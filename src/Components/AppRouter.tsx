@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { HashRouter, Route, Switch } from 'react-router-dom'
 import React from "react";
 import NavBar from './NavBar';
 import DiagnosticComponent from "./DiagnosticComponent";
@@ -10,7 +10,7 @@ import EmergencyNumbers from "./EmergencyNumbers/EmergencyNumbers";
 const AppRouter = () => {
     return(
         <div>
-            <Router>
+            <HashRouter>
                 <NavBar/>
                 <Switch>
                     <Route path="/" exact component={DiagnosticComponent} />
@@ -19,7 +19,7 @@ const AppRouter = () => {
                     <Route path="/numerosEmergencia" component={EmergencyNumbers} />
                     {/*<Route path="/edit-user" component={EditUserComponent} />*/}
                 </Switch>
-            </Router>
+            </HashRouter>
         </div>
     )
 }
