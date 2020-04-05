@@ -25,24 +25,18 @@
     color: #404040;
 }
 
-.Diagnostic .AgeHeight {
-    height: 30px;
-    padding-left: 50px;
-}
-
-.Diagnostic .input {
-    width: 150px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    background-color: white;
-}
 .Diagnostic .inputFull {
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     background-color: white;
-    padding: 5px;
+    padding-top: 8px;
     border-radius: 5px;
-    text-align: left;
+}
+
+.Diagnostic .slide {
+    color: #505050;
+    width: 90%;
+    margin-top: -50px;
 }
 
 .Diagnostic .inputFull .titleSelect {
@@ -51,12 +45,16 @@
     color: #235588;
 }
 
-.Diagnostic .input .titleSelect {
+.Diagnostic .titleSlider {
+    font-size: medium;
+    color: #235588;
+    text-align: center;
+    background-color: white;
+    border-radius: 5px;
     margin-bottom: 20px;
-    color: #202020;
-    padding: 5px;
-    font-size: larger;
+    vertical-align: middle;
 }
+
 .Diagnostic .symptom {
     width: 100%;
     margin-top: 20px;
@@ -179,7 +177,7 @@
 }
 
 .dialog {
-    background-color: #404040;
+    background-color: #303030;
     color: #F8F8FD;
 }
 

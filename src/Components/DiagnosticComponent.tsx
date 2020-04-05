@@ -22,7 +22,7 @@ import {
     MenuItem,
     Radio,
     RadioGroup,
-    Select
+    Select, Slider, Tooltip, withStyles
 } from "@material-ui/core";
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
@@ -71,7 +71,7 @@ class DiagnosticComponent extends Component <any, IState>{
             disabled: false,
             departamento: 'Beni',
             diagnostic: null,
-            age: 0,
+            age: 50,
             sex: "female",
             components: null,
             questions: null,
@@ -165,7 +165,7 @@ class DiagnosticComponent extends Component <any, IState>{
     InitialValues = () => {
         this.setState({
             diagnostic: null,
-            age: 0,
+            age: 50,
             sex: "female",
             components: null,
             questions: null,
@@ -216,9 +216,10 @@ class DiagnosticComponent extends Component <any, IState>{
             sex: event.target.value as string
         });
     };
-    onChangeAge = (event: React.ChangeEvent<{ value: unknown }>) => {
+
+    onChangeAge = (event: any, newValue: number | number[]) => {
         this.setState({
-            age: parseInt(event.target.value as string)
+            age: (newValue as number)
         });
     };
 
@@ -235,7 +236,7 @@ class DiagnosticComponent extends Component <any, IState>{
 
     render() {
         const {intl} = this.props;
-        const { showMessage } = this.state;
+        const { showMessage, age } = this.state;
         return (
             <div className="Diagnostic">
                 <Typography variant="h6" component="h2" className={"title"}>
@@ -266,7 +267,7 @@ class DiagnosticComponent extends Component <any, IState>{
                         </Typography>
                         <Divider/>
                         <Grid container spacing={0}>
-                            <Grid item xs={12}>
+                            <Grid item xs={6}>
                                 <FormControl className="inputFull" disabled={this.state.disabled}>
                                     <InputLabel id="input-dep" className="titleSelect">Departamento</InputLabel>
                                     <Select
@@ -288,7 +289,7 @@ class DiagnosticComponent extends Component <any, IState>{
                                 </FormControl>
                             </Grid>
                             <Grid item xs={6}>
-                                <FormControl className="input" disabled={this.state.disabled}>
+                                <FormControl className="inputFull" disabled={this.state.disabled}>
                                     <InputLabel id="demo-simple-select-label" className={"titleSelect"}>Sexo</InputLabel>
                                     <Select
                                         labelId="demo-simple-select-label"
@@ -301,22 +302,18 @@ class DiagnosticComponent extends Component <any, IState>{
                                     </Select>
                                 </FormControl>
                             </Grid>
-                            <Grid item xs={6}>
-                                <FormControl className="input" disabled={this.state.disabled}>
-                                    <InputLabel id="demo-simple-select-label" className={"titleSelect"}>Edad</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="edad"
-                                        onChange={this.onChangeAge}
-                                        value={this.state.age}
-                                    >
-                                        {
-                                            Array.from(Array(101).keys()).map(age => {
-                                                return (<option key={age} value={age}>{age}</option>)
-                                            })
-                                        }
-                                    </Select>
-                                </FormControl>
+                            <Grid item xs={12}>
+                                <Typography id="input-slider" gutterBottom className={"titleSlider"}>
+                                    Edad: {age}
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <PrettoSlider
+                                    defaultValue={50}
+                                    onChange={this.onChangeAge}
+                                    className={"slide"}
+                                    aria-label="pretto slider"
+                                />
                             </Grid>
                         </Grid>
                     </React.Fragment>
@@ -498,3 +495,33 @@ class DiagnosticComponent extends Component <any, IState>{
 }
 
 export default injectIntl(DiagnosticComponent);
+
+const PrettoSlider = withStyles({
+    root: {
+        color: '#404040',
+        height: 8,
+    },
+    thumb: {
+        height: 24,
+        width: 24,
+        backgroundColor: '#fff',
+        border: '2px solid currentColor',
+        marginTop: -8,
+        marginLeft: -12,
+        '&:focus, &:hover, &$active': {
+            boxShadow: 'inherit',
+        },
+    },
+    active: {},
+    valueLabel: {
+        left: 'calc(-50% + 4px)',
+    },
+    track: {
+        height: 8,
+        borderRadius: 4,
+    },
+    rail: {
+        height: 8,
+        borderRadius: 4,
+    },
+})(Slider);
