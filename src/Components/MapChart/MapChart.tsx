@@ -12,15 +12,10 @@ import boliviaMapGeo from "../../utils/Bolivia.json";
 import {BOLIVIA_CAPITAL_DEPARTMENT_COORDINATES} from "../../utils/MapConstants";
 
 import boliviaGraphicsData from "../../data/boliviaGraphicsData.json";
-import boliviaStatisticsData from "../../data/boliviaStatisticsData.json";
-
-console.log(boliviaGraphicsData.data);
 
 import { v4 as uuidv4 } from 'uuid';
 
 const MapChart = () => {
-    const {data: {generalInfo}} = boliviaStatisticsData;
-    console.log(generalInfo);
     return (
         <React.Fragment>
             <ComposableMap

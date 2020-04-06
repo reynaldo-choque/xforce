@@ -24,6 +24,7 @@ import TocIcon from '@material-ui/icons/Toc';
 import AcUnitIcon from '@material-ui/icons/AcUnit';
 import BoliviaUnida from "../images/BoliviaUnida.png";
 import PhoneIcon from '@material-ui/icons/Phone';
+import LibraryBooksOutlinedIcon from '@material-ui/icons/LibraryBooksOutlined';
 
 class NavBar extends Component<any, any> {
     constructor(props: any) {
@@ -91,7 +92,7 @@ class NavBar extends Component<any, any> {
                     </ListItemText>
                 </ListItem>
                 <ListItem button key="id5" onClick={()=>this.goTo('/estadisticas')}>
-                    <ListItemIcon><PhoneIcon/></ListItemIcon>
+                    <ListItemIcon><LibraryBooksOutlinedIcon/></ListItemIcon>
                     <ListItemText primary="Estadísticas en Bolivia">
                     </ListItemText>
                 </ListItem>
