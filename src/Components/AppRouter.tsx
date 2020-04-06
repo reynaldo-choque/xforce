@@ -5,7 +5,7 @@ import DiagnosticComponent from "./DiagnosticComponent";
 import RiskFactors from './RiskFactors/RiskFactors';
 import Symptoms from './Symptoms/Symptoms';
 import EmergencyNumbers from "./EmergencyNumbers/EmergencyNumbers";
-
+import BoliviaStatistics from "./BoliviaStatistics/BoliviaStatistics";
 
 const AppRouter = () => {
     return(
@@ -17,7 +17,7 @@ const AppRouter = () => {
                     <Route path="/factores" component={RiskFactors} />
                     <Route path="/sintomas" component={Symptoms} />
                     <Route path="/numerosEmergencia" component={EmergencyNumbers} />
-                    {/*<Route path="/edit-user" component={EditUserComponent} />*/}
+                    <Route path="/estadisticas" component={BoliviaStatistics} />
                 </Switch>
             </HashRouter>
         </div>

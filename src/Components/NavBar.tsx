@@ -90,6 +90,11 @@ class NavBar extends Component<any, any> {
                     <ListItemText primary="Números de emergencia">
                     </ListItemText>
                 </ListItem>
+                <ListItem button key="id5" onClick={()=>this.goTo('/estadisticas')}>
+                    <ListItemIcon><PhoneIcon/></ListItemIcon>
+                    <ListItemText primary="Estadísticas en Bolivia">
+                    </ListItemText>
+                </ListItem>
             </List>
         </div>
     );

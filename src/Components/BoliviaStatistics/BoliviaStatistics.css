@@ -1,0 +1,11 @@
+.bolivia-statistics {
+    position: relative;
+}
+.bolivia-statistics.map{
+    width: 80%;
+    float: left;
+}
+.bolivia-statistics.general-data{
+    width: 20%;
+    float: right;
+}
