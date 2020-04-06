@@ -9,8 +9,9 @@ import {
 
 //CONSTANTS
 import boliviaMapGeo from "../../utils/Bolivia.json";
-import {BOLIVIA_DEPARTMENT_COORDINATES, BOLIVIA_PLACES_WITH_INFECTED_PEOPLE} from "../../utils/MapConstants";
+import {BOLIVIA_CAPITAL_DEPARTMENT_COORDINATES, BOLIVIA_PLACES_WITH_INFECTED_PEOPLE} from "../../utils/MapConstants";
 
+import { v4 as uuidv4 } from 'uuid';
 
 const MapChart = () => {
     return (
@@ -18,51 +19,50 @@ const MapChart = () => {
             <ComposableMap
                 projection="geoAzimuthalEqualArea"
                 projectionConfig={{
-                    rotate: [60, 17, 0],
-                    scale: 2000
+                    rotate: [64, 16, 0],
+                    scale: 2450
                 }}
             >
                 <Geographies geography={boliviaMapGeo}>
                     {({ geographies }) =>
                         geographies
-                            .filter(d => d.properties.NAME === "Bolivia")
+                            .filter(d => d.properties.country === "Bolivia")
                             .map(geo => (
                                 <Geography
-                                    key={geo.rsmKey}
+                                    key={uuidv4()}
                                     geography={geo}
-                                    fill="#EAEAEC"
-                                    stroke="#D6D6DA"
+                                    fill={geo.properties.color || "red"}
+                                    stroke="#cb410b"
                                 />
                             ))
                     }
                 </Geographies>
-                {BOLIVIA_DEPARTMENT_COORDINATES.map(({ name, coordinates, markerOffset }) => (
-                    <Marker key={name} coordinates={coordinates}>
-                        <svg
+                {BOLIVIA_CAPITAL_DEPARTMENT_COORDINATES.map(({ name, coordinates, markerOffset }) => (
+                    <Marker key={uuidv4()} coordinates={coordinates}>
+                        <g
                             fill="none"
-                            stroke="black"
-                            strokeWidth="2"
+                            stroke="#000000"
+                            strokeWidth="1"
                             strokeLinecap="round"
                             strokeLinejoin="round"
-                            transform="translate(-12, -24)"
+                            transform="translate(-12, -19)"
                         >
-                            <circle cx="12" cy="10" r="3" color="black"/>
+                            <circle cx="12" cy="10" r="3" />
                             <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z" />
-                        </svg>
+                        </g>
                         <text
                             textAnchor="middle"
                             y={markerOffset}
-                            style={{ fontFamily: "system-ui", fill: "#5D5A6D" }}
+                            style={{ fontFamily: "system-ui", fill: "#5D5A6D", fontSize: "10px", fontWeight: "bold"}}
                         >
                             {name}
                         </text>
                     </Marker>
                 ))}
+
                 {BOLIVIA_PLACES_WITH_INFECTED_PEOPLE.map(({ name, coordinates, markerOffset }) => (
-                    <Marker key={name} coordinates={coordinates}>
-                        <svg stroke="red" fill="red" stroke-width="15" opacity="0.6">
-                            <circle cx="13" cy="14" r="6" fill="red" />
-                        </svg>
+                    <Marker key={uuidv4()} coordinates={coordinates}>
+                        <circle r={10} fill="#ff0000" stroke="#cc0000" strokeWidth={1} opacity={0.5} />
                     </Marker>
                 ))}
             </ComposableMap>

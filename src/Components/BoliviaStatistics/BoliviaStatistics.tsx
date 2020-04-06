@@ -3,7 +3,8 @@ import XforceAPI from "../../Services/XforceAPI";
 import MapChart from "../MapChart/MapChart";
 
 // STYLES
-import "./BoliviaStatistics.css"
+import "./BoliviaStatistics.css";
+
 class BoliviaStatistics extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
@@ -23,58 +24,33 @@ class BoliviaStatistics extends React.Component<any, any> {
                     <MapChart />
                 </div>
                 <div className="bolivia-statistics general-data">
-                    <table id="customers">
-                        <tr>
-                            <th>Departamento</th>
-                            <th>Infectados</th>
-                            <th>Recuperados</th>
-                        </tr>
-                        <tr>
-                            <td>La Paz</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>Oruro</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>Potosí</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>Tarija</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>Chuquisaca</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>Cochabamba</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>Santa Cruz</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>Beni</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>Pando</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                    </table>
+                    <div className="wrapper">
+                        <div className="table">
+                            <div className="row header">
+                                <div className="cell">
+                                    Confirmados
+                                </div>
+                                <div className="cell">
+                                    Personas Recuperadas
+                                </div>
+                                <div className="cell">
+                                    Muertes
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="cell" data-title="Casos Confirmados">
+                                    183
+                                </div>
+                                <div className="cell" data-title="Personas Recuperadas">
+                                    2
+                                </div>
+                                <div className="cell" data-title="Muertes">
+                                    11
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
