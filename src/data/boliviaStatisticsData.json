@@ -1,0 +1,14 @@
+{
+  "data":{
+    "generalInfo":{
+      "casosConfirmados":183,
+      "personasRecuperadas":2,
+      "muertes":11
+    },
+    "byDepartment":[
+      {
+        "name":"La Paz"
+      }
+    ]
+  }
+}

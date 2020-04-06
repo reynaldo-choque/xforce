@@ -4,6 +4,7 @@ import MapChart from "../MapChart/MapChart";
 
 // STYLES
 import "./BoliviaStatistics.css";
+import boliviaStatisticsData from "../../data/boliviaStatisticsData.json";
 
 class BoliviaStatistics extends React.Component<any, any> {
     constructor(props: any) {
@@ -18,6 +19,7 @@ class BoliviaStatistics extends React.Component<any, any> {
     }
 
     render() {
+        const {data: {generalInfo}} = boliviaStatisticsData;
         return (
             <div className="bolivia-statistics" >
                 <div className="bolivia-statistics map">
@@ -40,13 +42,13 @@ class BoliviaStatistics extends React.Component<any, any> {
 
                             <div className="row">
                                 <div className="cell" data-title="Casos Confirmados">
-                                    183
+                                    {generalInfo.casosConfirmados}
                                 </div>
                                 <div className="cell" data-title="Personas Recuperadas">
-                                    2
+                                    {generalInfo.personasRecuperadas}
                                 </div>
                                 <div className="cell" data-title="Muertes">
-                                    11
+                                    {generalInfo.muertes}
                                 </div>
                             </div>
                         </div>

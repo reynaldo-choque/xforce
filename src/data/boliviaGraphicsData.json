@@ -1,0 +1,124 @@
+{
+  "data":[
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -68.1193,
+        -16.4897
+      ],
+      "radioInfection":15,
+      "location": "la paz"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -68.2147,
+        -16.5001
+      ],
+      "radioInfection":15,
+      "location": "el alto"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -67.9216919,
+        -17.2357998
+      ],
+      "radioInfection":8,
+      "location": "patacamaya"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -69.0862,
+        -16.1663
+      ],
+      "radioInfection":5,
+      "location": "copacabana"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -67.106,
+        -17.9647
+      ],
+      "radioInfection":15,
+      "location": "oruro"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -65.7530594,
+        -19.5836105
+      ],
+      "radioInfection":15,
+      "location": "potosi"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -64.7281,
+        -21.5214
+      ],
+      "radioInfection":4,
+      "location": "tarija"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -65.2554,
+        -19.0429
+      ],
+      "radioInfection":4,
+      "location": "sucre"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -66.1653,
+        -17.414
+      ],
+      "radioInfection":15,
+      "location": "cochabamba"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -63.2504997,
+        -17.3386593
+      ],
+      "radioInfection":4,
+      "location": "montero"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -63.1561,
+        -17.8146
+      ],
+      "radioInfection":15,
+      "location": "santa cruz"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -68.7691803,
+        -11.0267096
+      ],
+      "radioInfection":5,
+      "location": "cobija"
+    }
+  ]
+}

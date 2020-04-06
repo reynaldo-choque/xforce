@@ -9,11 +9,18 @@ import {
 
 //CONSTANTS
 import boliviaMapGeo from "../../utils/Bolivia.json";
-import {BOLIVIA_CAPITAL_DEPARTMENT_COORDINATES, BOLIVIA_PLACES_WITH_INFECTED_PEOPLE} from "../../utils/MapConstants";
+import {BOLIVIA_CAPITAL_DEPARTMENT_COORDINATES} from "../../utils/MapConstants";
+
+import boliviaGraphicsData from "../../data/boliviaGraphicsData.json";
+import boliviaStatisticsData from "../../data/boliviaStatisticsData.json";
+
+console.log(boliviaGraphicsData.data);
 
 import { v4 as uuidv4 } from 'uuid';
 
 const MapChart = () => {
+    const {data: {generalInfo}} = boliviaStatisticsData;
+    console.log(generalInfo);
     return (
         <React.Fragment>
             <ComposableMap
@@ -60,9 +67,9 @@ const MapChart = () => {
                     </Marker>
                 ))}
 
-                {BOLIVIA_PLACES_WITH_INFECTED_PEOPLE.map(({ name, coordinates, markerOffset }) => (
+                {boliviaGraphicsData.data.map(({ name, coordinates, markerOffset, radioInfection }) => (
                     <Marker key={uuidv4()} coordinates={coordinates}>
-                        <circle r={10} fill="#ff0000" stroke="#cc0000" strokeWidth={1} opacity={0.5} />
+                        <circle r={radioInfection} fill="#ff0000" stroke="#cc0000" strokeWidth={1} opacity={0.5} />
                     </Marker>
                 ))}
             </ComposableMap>
