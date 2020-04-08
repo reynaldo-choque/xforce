@@ -1,63 +1,122 @@
 .bolivia-statistics {
+    display: flex;
 }
 .bolivia-statistics.map{
     width: 70%;
-    float: left;
+    display: inline-block;
 }
 .bolivia-statistics.general-data{
     width: 30%;
-    float: right;
+    display: inline-block;
+}
+.bolivia-statistics.by-department {
+    margin-top: 15px;
 }
 
-.wrapper {
-    margin: 30px 20px 0 -160px;
+.bolivia-statistics.general-data .wrapper {
+    margin: 30px 20px 0 -120px;
     max-width: 800px;
 }
 
-.table {
+.bolivia-statistics.general-data .wrapper-department {
+    margin: 30px 20px 0 -120px;
+    font-size: 13px;
+    max-width: 800px;
+}
+
+.bolivia-statistics.general-data .table-general-info {
     width: 100%;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     display: table;
 }
-@media screen and (max-width: 580px) {
-    .table {
-        display: block;
-    }
-}
-
-.row {
+.bolivia-statistics.general-data .row {
     display: table-row;
     background: #f6f6f6;
 }
-.row:nth-of-type(odd) {
+.bolivia-statistics.general-data .row:nth-of-type(odd) {
     background: #e9e9e9;
 }
-.row.header {
+.bolivia-statistics.general-data .row.header {
     font-weight: 900;
     color: #ffffff;
     background: #ea6153;
 }
+
+.bolivia-statistics.general-data .wrapper-department table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.bolivia-statistics.general-data .wrapper-department tr:nth-of-type(odd) {
+    background: #eee;
+}
+.bolivia-statistics.general-data .wrapper-department th {
+    font-weight: 900;
+    color: #ffffff;
+    background: #ea6153;
+    text-align: center;
+}
+.bolivia-statistics.general-data .wrapper-department td, th {
+    padding: 2px;
+    border: 1px solid #ccc;
+}
+
+.bolivia-statistics.by-department table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.bolivia-statistics.by-department tr:nth-of-type(odd) {
+    background: #eee;
+}
+
+.bolivia-statistics.by-department th {
+    font-weight: 900;
+    color: #ffffff;
+    background: #ea6153;
+    text-align: center;
+}
+.bolivia-statistics.by-department td, th {
+    padding: 6px;
+    border: 1px solid #ccc;
+}
+.bolivia-statistics.general-data .cell {
+    padding: 6px 12px;
+    display: table-cell;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .bolivia-statistics.general-data .wrapper {
+        margin: 30px 20px 0 -50px;
+        max-width: 800px;
+        font-size: 13px;
+    }
+}
+
 @media screen and (max-width: 800px) {
-    .wrapper {
+    .bolivia-statistics.general-data .wrapper-department {
+        display: none;
+    }
+
+    .bolivia-statistics.general-data .wrapper {
         text-align: left;
         margin: 30px 10px -50px 0;
         padding: 2px;
     }
-    .row {
+    .bolivia-statistics.general-data .row {
         padding: 5px;
         display: block;
     }
-    .row.header {
+    .bolivia-statistics.general-data .row.header {
         padding: 0;
         height: 6px;
     }
-    .row.header .cell {
+    .bolivia-statistics.general-data .row.header .cell {
         display: none;
     }
-    .row .cell {
+    .bolivia-statistics.general-data .row .cell {
         margin-bottom: 5px;
     }
-    .row .cell:before {
+    .bolivia-statistics.general-data .row .cell:before {
         margin-bottom: 3px;
         content: attr(data-title);
         min-width: 98px;
@@ -68,20 +127,94 @@
         color: #969696;
         display: block;
     }
-}
 
-.cell {
-    padding: 6px 12px;
-    display: table-cell;
-}
-@media screen and (max-width: 800px) {
-    .cell {
+    .bolivia-statistics.general-data .cell {
         padding: 5px;
         display: block;
     }
+
+
+    /*MY MAGIC*/
+    /* Force table to not be like tables anymore */
+    .bolivia-statistics.by-department table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    .bolivia-statistics.by-department thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .bolivia-statistics.by-department tr { border: 1px solid #ccc; }
+
+    .bolivia-statistics.by-department td {
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        padding-top: 0;
+        text-align: right;
+    }
+
+    .bolivia-statistics.by-department td:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: 600;
+    }
+
+    /*
+    Label the data
+    */
+    .bolivia-statistics.by-department td:nth-of-type(1):before { content: "Departamento"; }
+    .bolivia-statistics.by-department td:nth-of-type(2):before { content: "Casos Confirmados"; }
+    .bolivia-statistics.by-department td:nth-of-type(3):before { content: "Personas Recuperadas"; }
+    .bolivia-statistics.by-department td:nth-of-type(4):before { content: "Muertes"; }
 }
+
 @media screen and (max-width: 600px) {
-    .wrapper {
+    .bolivia-statistics.general-data .wrapper {
         margin: 10px 10px -50px 0;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .bolivia-statistics.general-data .table-general-info {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .bolivia-statistics.general-data .wrapper {
+        margin: 10px 10px 15px 0;
+    }
+    .bolivia-statistics.general-data .row .cell {
+        margin-bottom: 0;
+    }
+    .bolivia-statistics.general-data .row .cell:before {
+        margin-bottom: 0;
+    }
+    .bolivia-statistics.general-data .cell {
+        font-size: 13px;
+        margin: 0;
+    }
+}
+
+
+@media screen and (min-width: 801px) {
+    .bolivia-statistics.by-department {
+        display: none;
+    }
+    .bolivia-statistics.general-data .wrapper {
+       display: none;
     }
 }

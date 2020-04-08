@@ -1,13 +1,56 @@
 {
   "data":{
     "generalInfo":{
-      "casosConfirmados":183,
-      "personasRecuperadas":2,
-      "muertes":11
+      "casosConfirmados": 210,
+      "personasRecuperadas": 2,
+      "muertes": 15
     },
     "byDepartment":[
       {
-        "name":"La Paz"
+        "name": "Santa Cruz",
+        "casosConfirmados": 103,
+        "personasRecuperadas": 1,
+        "muertes":5
+      }, {
+        "name":"La Paz",
+        "casosConfirmados": 39,
+        "personasRecuperadas": 0,
+        "muertes": 7
+      }, {
+        "name":"Cochabamba",
+        "casosConfirmados": 38,
+        "personasRecuperadas": 0,
+        "muertes": 2
+      }, {
+        "name":"Potosí",
+        "casosConfirmados": 10,
+        "personasRecuperadas": 0,
+        "muertes": 1
+      }, {
+        "name":"Pando",
+        "casosConfirmados": 10,
+        "personasRecuperadas": 0,
+        "muertes": 0
+      }, {
+        "name":"Oruro",
+        "casosConfirmados": 8,
+        "personasRecuperadas": 1,
+        "muertes": 0
+      }, {
+        "name":"Tarija",
+        "casosConfirmados": 1,
+        "personasRecuperadas": 0,
+        "muertes": 0
+      }, {
+        "name":"Chuquisaca",
+        "casosConfirmados": 1,
+        "personasRecuperadas": 0,
+        "muertes": 0
+      }, {
+        "name":"Beni",
+        "casosConfirmados": 0,
+        "personasRecuperadas": 0,
+        "muertes": 0
       }
     ]
   }

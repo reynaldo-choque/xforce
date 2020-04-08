@@ -21,7 +21,7 @@ const MapChart = () => {
             <ComposableMap
                 projection="geoAzimuthalEqualArea"
                 projectionConfig={{
-                    rotate: [64, 16, 0],
+                    rotate: [62, 16, 0],
                     scale: 2450
                 }}
             >

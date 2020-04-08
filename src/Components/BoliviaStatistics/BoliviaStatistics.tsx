@@ -14,47 +14,102 @@ class BoliviaStatistics extends React.Component<any, any> {
     componentDidMount() {
         // XforceAPI call rest for statistics
         //this.setState({
-        //    emergencyNumbers: EMERGENCY_NUMBERS //(res && res.data) || []
         //});
     }
 
     render() {
-        const {data: {generalInfo}} = boliviaStatisticsData;
+        const {data: {generalInfo, byDepartment}} = boliviaStatisticsData;
         return (
-            <div className="bolivia-statistics" >
-                <div className="bolivia-statistics map">
-                    <MapChart />
-                </div>
-                <div className="bolivia-statistics general-data">
-                    <div className="wrapper">
-                        <div className="table">
-                            <div className="row header">
-                                <div className="cell">
-                                    Confirmados
+            <React.Fragment>
+                <div className="bolivia-statistics" >
+                    <div className="bolivia-statistics map">
+                        <MapChart />
+                    </div>
+                    <div className="bolivia-statistics general-data">
+                        <div className="wrapper">
+                            <div className="table-general-info">
+                                <div className="row header">
+                                    <div className="cell">
+                                        Confirmados
+                                    </div>
+                                    <div className="cell">
+                                        Personas Recuperadas
+                                    </div>
+                                    <div className="cell">
+                                        Muertes
+                                    </div>
                                 </div>
-                                <div className="cell">
-                                    Personas Recuperadas
-                                </div>
-                                <div className="cell">
-                                    Muertes
-                                </div>
-                            </div>
 
-                            <div className="row">
-                                <div className="cell" data-title="Casos Confirmados">
-                                    {generalInfo.casosConfirmados}
-                                </div>
-                                <div className="cell" data-title="Personas Recuperadas">
-                                    {generalInfo.personasRecuperadas}
-                                </div>
-                                <div className="cell" data-title="Muertes">
-                                    {generalInfo.muertes}
+                                <div className="row">
+                                    <div className="cell" data-title="Casos Confirmados">
+                                        {generalInfo.casosConfirmados}
+                                    </div>
+                                    <div className="cell" data-title="Personas Recuperadas">
+                                        {generalInfo.personasRecuperadas}
+                                    </div>
+                                    <div className="cell" data-title="Muertes">
+                                        {generalInfo.muertes}
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div className="wrapper-department">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Departmento</th>
+                                    <th>Confirmados</th>
+                                    <th>Recuperad@s</th>
+                                    <th>Muertes</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                    byDepartment.map(department => (
+                                        <tr>
+                                            <td>{department.name}</td>
+                                            <td>{department.casosConfirmados}</td>
+                                            <td>{department.personasRecuperadas}</td>
+                                            <td>{department.muertes}</td>
+                                        </tr>
+                                    ))
+                                }
+                                </tbody>
+                                <tfoot>
+                                    <th>Total Bolivia</th>
+                                    <th>{generalInfo.casosConfirmados}</th>
+                                    <th>{generalInfo.personasRecuperadas}</th>
+                                    <th>{generalInfo.muertes}</th>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div className="bolivia-statistics by-department">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Departmento</th>
+                            <th>Confirmados</th>
+                            <th>Recuperad@s</th>
+                            <th>Muertes</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            byDepartment.map(department => (
+                                <tr>
+                                    <td>{department.name}</td>
+                                    <td>{department.casosConfirmados}</td>
+                                    <td>{department.personasRecuperadas}</td>
+                                    <td>{department.muertes}</td>
+                                </tr>
+                            ))
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </React.Fragment>
         );
     }
 }
