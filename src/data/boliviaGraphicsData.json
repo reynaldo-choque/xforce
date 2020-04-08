@@ -84,6 +84,36 @@
       "markerOffset":0,
       "name":"",
       "coordinates":[
+        -65.8347168,
+        -17.5423393
+      ],
+      "radioInfection":5,
+      "location": "punata, cochabamba"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -66.2608185,
+        -17.7111301
+      ],
+      "radioInfection":5,
+      "location": "capinota, cochabamba"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -66.2427,
+        -17.551
+      ],
+      "radioInfection":5,
+      "location": "santibanez, cochabamba"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
         -66.1653,
         -17.414
       ],
@@ -99,6 +129,26 @@
       ],
       "radioInfection":4,
       "location": "montero"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -64.1060867,
+        -18.4892292
+      ],
+      "radioInfection":4,
+      "location": "vallegrande, santa cruz"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -63.7312,
+        -17.4048
+      ],
+      "radioInfection":4,
+      "location": "san carlos, santa cruz"
     },
     {
       "markerOffset":0,
