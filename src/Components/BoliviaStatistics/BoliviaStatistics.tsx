@@ -46,7 +46,7 @@ class BoliviaStatistics extends React.Component<any, any> {
             width = width * 36 / 100;
         this.setState({
             chartSize: width,
-            bottomChartSize:  window.innerWidth - 100
+            bottomChartSize:  window.innerWidth * 70 / 100
         });
     }
 
