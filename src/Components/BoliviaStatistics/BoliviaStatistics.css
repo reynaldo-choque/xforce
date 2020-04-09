@@ -12,6 +12,9 @@
 .bolivia-statistics.by-department {
     margin-top: 15px;
 }
+.bottom-chart {
+    margin-top: 20px;
+}
 
 .bolivia-statistics.general-data .wrapper {
     margin: 30px 20px 0 -120px;
@@ -22,6 +25,9 @@
     margin: 30px 20px 0 -120px;
     font-size: 13px;
     max-width: 800px;
+}
+.bolivia-statistics.general-data .wrapper-sinple-chart {
+    margin-top: 15px;
 }
 
 .bolivia-statistics.general-data .table-general-info {
@@ -216,5 +222,9 @@
     }
     .bolivia-statistics.general-data .wrapper {
        display: none;
+    }
+
+    .bottom-chart {
+        display: none;
     }
 }
