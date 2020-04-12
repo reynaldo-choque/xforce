@@ -1,14 +1,14 @@
 {
   "data":[
     {
-      "markerOffset":0,
+      "markerOffset": 0,
       "name":"",
       "coordinates":[
         -68.1193,
         -16.4897
       ],
-      "radioInfection":15,
-      "location": "la paz"
+      "radioInfection": 15,
+      "location": "LA PAZ-CIUDAD DE LA PAZ"
     },
     {
       "markerOffset":0,
@@ -17,8 +17,8 @@
         -68.2147,
         -16.5001
       ],
-      "radioInfection":15,
-      "location": "el alto"
+      "radioInfection": 8,
+      "location": "LA PAZ-EL ALTO"
     },
     {
       "markerOffset":0,
@@ -27,8 +27,8 @@
         -67.9216919,
         -17.2357998
       ],
-      "radioInfection":8,
-      "location": "patacamaya"
+      "radioInfection": 8,
+      "location": "LA PAZ-PATACAMAYA"
     },
     {
       "markerOffset":0,
@@ -37,8 +37,8 @@
         -69.0862,
         -16.1663
       ],
-      "radioInfection":5,
-      "location": "copacabana"
+      "radioInfection": 4,
+      "location": "LA PAZ-COPACABANA"
     },
     {
       "markerOffset":0,
@@ -48,7 +48,7 @@
         -17.9647
       ],
       "radioInfection":15,
-      "location": "oruro"
+      "location": "ORURO-CIUDAD DE ORURO"
     },
     {
       "markerOffset":0,
@@ -57,8 +57,8 @@
         -65.7530594,
         -19.5836105
       ],
-      "radioInfection":15,
-      "location": "potosi"
+      "radioInfection": 15,
+      "location": "POTOSI-CIUDAD DE POTOSI"
     },
     {
       "markerOffset":0,
@@ -68,7 +68,7 @@
         -21.5214
       ],
       "radioInfection":4,
-      "location": "tarija"
+      "location": "TARIJA-CIUDAD DE TARIJA"
     },
     {
       "markerOffset":0,
@@ -78,7 +78,47 @@
         -19.0429
       ],
       "radioInfection":4,
-      "location": "sucre"
+      "location": "CHUQUISACA-SUCRE"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -64.9087,
+        -18.1089
+      ],
+      "radioInfection": 4,
+      "location": "COCHABAMBA-OMEREQUE"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -65.9325333,
+        -17.5877705
+      ],
+      "radioInfection": 4,
+      "location": "COCHABAMBA-CLIZA"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -65.1532974,
+        -16.9941692
+      ],
+      "radioInfection": 4,
+      "location": "COCHABAMBA-CHIMORE"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -66.2783813,
+        -17.3922806
+      ],
+      "radioInfection": 4,
+      "location": "COCHABAMBA-QUILLACOLLO"
     },
     {
       "markerOffset":0,
@@ -87,8 +127,8 @@
         -65.8347168,
         -17.5423393
       ],
-      "radioInfection":5,
-      "location": "punata, cochabamba"
+      "radioInfection": 4,
+      "location": "COCHABAMBA-PUNATA"
     },
     {
       "markerOffset":0,
@@ -98,7 +138,7 @@
         -17.7111301
       ],
       "radioInfection":5,
-      "location": "capinota, cochabamba"
+      "location": "COCHABAMBA-CAPINOTA"
     },
     {
       "markerOffset":0,
@@ -108,7 +148,27 @@
         -17.551
       ],
       "radioInfection":5,
-      "location": "santibanez, cochabamba"
+      "location": "COCHABAMBA-SANTIBAÑEZ"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -66.0382538,
+        -17.3979893
+      ],
+      "radioInfection":5,
+      "location": "COCHABAMBA-SACABA"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -66.1653,
+        -17.414
+      ],
+      "radioInfection":5,
+      "location": "COCHABAMBA-COLCAPIRHUA"
     },
     {
       "markerOffset":0,
@@ -118,7 +178,7 @@
         -17.414
       ],
       "radioInfection":15,
-      "location": "cochabamba"
+      "location": "COCHABAMBA-CIUDAD DE COCHABAMBA"
     },
     {
       "markerOffset":0,
@@ -127,8 +187,8 @@
         -63.2504997,
         -17.3386593
       ],
-      "radioInfection":4,
-      "location": "montero"
+      "radioInfection":15,
+      "location": "SANTA CRUZ-MONTERO"
     },
     {
       "markerOffset":0,
@@ -138,7 +198,37 @@
         -18.4892292
       ],
       "radioInfection":4,
-      "location": "vallegrande, santa cruz"
+      "location": "SANTA CRUZ-VALLEGRANDE"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -63.324,
+        -17.891
+      ],
+      "radioInfection": 4,
+      "location": "SANTA CRUZ-LA GUARDIA"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -63.1677818,
+        -17.5163002
+      ],
+      "radioInfection": 4,
+      "location": "SANTA CRUZ-WARNES"
+    },
+    {
+      "markerOffset":0,
+      "name":"",
+      "coordinates":[
+        -59.7614212,
+        -18.3347301
+      ],
+      "radioInfection": 4,
+      "location": "SANTA CRUZ-ROBORE"
     },
     {
       "markerOffset":0,
@@ -148,7 +238,7 @@
         -17.4048
       ],
       "radioInfection":4,
-      "location": "san carlos, santa cruz"
+      "location": "SANTA CRUZ-SAN CARLOS"
     },
     {
       "markerOffset":0,
@@ -157,8 +247,8 @@
         -63.1561,
         -17.8146
       ],
-      "radioInfection":15,
-      "location": "santa cruz"
+      "radioInfection":20,
+      "location": "SANTA CRUZ - SANTA CRUZ DE LA SIERRA"
     },
     {
       "markerOffset":0,
@@ -168,7 +258,7 @@
         -11.0267096
       ],
       "radioInfection": 10,
-      "location": "cobija"
+      "location": "PANDO-COBIJA"
     }
   ]
 }

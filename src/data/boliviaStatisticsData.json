@@ -1,41 +1,41 @@
 {
   "data":{
     "generalInfo":{
-      "casosConfirmados": 210,
+      "casosConfirmados": 300,
       "personasRecuperadas": 2,
-      "muertes": 15
+      "muertes": 24
     },
     "byDepartment":[
       {
         "name": "Santa Cruz",
-        "casosConfirmados": 103,
+        "casosConfirmados": 147,
         "personasRecuperadas": 1,
-        "muertes":5
+        "muertes": 10
       }, {
         "name":"La Paz",
-        "casosConfirmados": 39,
+        "casosConfirmados": 65,
         "personasRecuperadas": 0,
-        "muertes": 7
+        "muertes": 8
       }, {
         "name":"Cochabamba",
-        "casosConfirmados": 38,
+        "casosConfirmados": 49,
         "personasRecuperadas": 0,
-        "muertes": 2
+        "muertes": 4
       }, {
         "name":"Potosí",
-        "casosConfirmados": 10,
+        "casosConfirmados": 15,
         "personasRecuperadas": 0,
         "muertes": 1
       }, {
         "name":"Pando",
-        "casosConfirmados": 10,
+        "casosConfirmados": 11,
         "personasRecuperadas": 0,
         "muertes": 0
       }, {
         "name":"Oruro",
-        "casosConfirmados": 8,
+        "casosConfirmados": 11,
         "personasRecuperadas": 1,
-        "muertes": 0
+        "muertes": 1
       }, {
         "name":"Tarija",
         "casosConfirmados": 1,
@@ -84,8 +84,10 @@
       {"name": "5 Abr", "casos": 183, "muertes": 11},
       {"name": "6 Abr", "casos": 194, "muertes": 14},
       {"name": "7 Abr", "casos": 210, "muertes": 15},
-      {"name": "8 Abr", "casos": 220, "muertes": 20},
-      {"name": "9 Abr", "casos": 300, "muertes": 21}
+      {"name": "8 Abr", "casos": 264, "muertes": 18},
+      {"name": "9 Abr", "casos": 268, "muertes": 19},
+      {"name": "10 Abr", "casos": 275, "muertes": 20},
+      {"name": "11 Abr", "casos": 300, "muertes": 24}
     ]
   }
 }

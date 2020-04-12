@@ -103,6 +103,14 @@
         display: none;
     }
 
+    .bolivia-statistics.general-data{
+        width: 20%;
+        display: inline-block;
+    }
+    .bolivia-statistics.map{
+        width: 80%;
+        display: inline-block;
+    }
     .bolivia-statistics.general-data .wrapper {
         text-align: left;
         margin: 30px 10px -50px 0;
