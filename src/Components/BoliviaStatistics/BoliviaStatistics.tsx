@@ -1,4 +1,5 @@
 import * as React from 'react';
+import ReactTooltip from "react-tooltip";
 
 import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
@@ -14,7 +15,8 @@ import boliviaStatisticsData from "../../data/boliviaStatisticsData.json";
 class BoliviaStatistics extends React.Component<any, any> {
     state = {
         chartSize: 200,
-        bottomChartSize: 600
+        bottomChartSize: 600,
+        tooltipContent: ""
     };
 
     constructor(props: any) {
@@ -28,6 +30,28 @@ class BoliviaStatistics extends React.Component<any, any> {
 
         window.addEventListener('resize', this.handleWindowResize);
         this.handleWindowResize();
+    }
+
+    editTooltip = (department) => {
+        const {data: { byDepartment }} = boliviaStatisticsData;
+        if(department) {
+            const depInfo = byDepartment.find(dep => dep.name == department);
+            if(depInfo) {
+                this.setState({
+                    tooltipContent: department
+                    + "<br /> Confirmados: "
+                    + depInfo.casosConfirmados
+                    + "<br /> Recuperados "
+                    + depInfo.personasRecuperadas
+                    + "<br /> Muertes "
+                    + depInfo.muertes
+                });
+            }
+        } else {
+            this.setState({
+                tooltipContent: ""
+            });
+        }
     }
 
     handleWindowResize = () => {
@@ -56,7 +80,11 @@ class BoliviaStatistics extends React.Component<any, any> {
             <React.Fragment>
                 <div className="bolivia-statistics" >
                     <div className="bolivia-statistics map">
-                        <MapChart />
+                        <MapChart
+                            dataTip={this.state.tooltipContent}
+                            dataTipFn={this.editTooltip}
+                        />
+                        <ReactTooltip html={true} style={{padding: "0" }} />
                     </div>
                     <div className="bolivia-statistics general-data">
                         <div className="wrapper">

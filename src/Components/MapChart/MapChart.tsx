@@ -1,4 +1,6 @@
 import React from "react";
+import ReactTooltip from 'react-tooltip';
+
 // @ts-ignore
 import {
     ComposableMap,
@@ -20,8 +22,9 @@ class MapChart extends React.Component<any, any> {
         mapWidth: 800,
         mapHeight: 600,
         mapScale: 2450,
-        rotate_X: 62,
+        rotate_X: 60,
         rotate_Y: 16,
+        fillColor: null
     };
 
     constructor(props: any) {
@@ -35,7 +38,7 @@ class MapChart extends React.Component<any, any> {
         //});
 
         window.addEventListener('resize', this.handleWindowResize);
-        //this.handleWindowResize();
+        this.handleWindowResize();
     }
 
     handleWindowResize = () => {
@@ -47,7 +50,7 @@ class MapChart extends React.Component<any, any> {
                 mapWidth: 800,
                 mapHeight: 600,
                 mapScale: 2450,
-                rotate_X: 62,
+                rotate_X: 61,
                 rotate_Y: 16
             });
         } else {
@@ -62,9 +65,11 @@ class MapChart extends React.Component<any, any> {
     }
 
     render() {
+        const base = this;
         return (
             <React.Fragment>
                 <ComposableMap
+                    data-tip={this.props.dataTip}
                     width={this.state.mapWidth}
                     height={this.state.mapHeight}
                     projection="geoAzimuthalEqualArea"
@@ -81,12 +86,29 @@ class MapChart extends React.Component<any, any> {
                                     <Geography
                                         key={uuidv4()}
                                         geography={geo}
-                                        fill={geo.properties.color || "red"}
                                         stroke="#cb410b"
+                                        fill= {base.state.fillColor || geo.properties.color || "red"}
+                                        style={{
+                                            hover: {
+                                                fill: "red",
+                                                outline: "none"
+                                            },
+                                            pressed: {
+                                                fill: "blue",
+                                                outline: "none"
+                                            }
+                                        }}
+                                        onMouseEnter={() => {
+                                            this.props.dataTipFn(geo.properties.name);
+                                        }}
+                                        onMouseLeave={() => {
+                                             this.props.dataTipFn(null);
+                                        }}
                                     />
                                 ))
                         }
                     </Geographies>
+
                     {BOLIVIA_CAPITAL_DEPARTMENT_COORDINATES.map(({name, coordinates, markerOffset}) => (
                         <Marker key={uuidv4()} coordinates={coordinates}>
                             <g
