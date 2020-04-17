@@ -17,8 +17,8 @@ import {
     FormControl,
     FormControlLabel,
     FormHelperText,
-    FormLabel, Grid,
-    InputLabel,
+    FormLabel, Grid, IconButton,
+    InputLabel, List, ListItem, ListItemSecondaryAction, ListItemText,
     MenuItem,
     Radio,
     RadioGroup,
@@ -99,7 +99,7 @@ class DiagnosticComponent extends Component <any, IState>{
 
     searchDepartmentNumbers = (department: string) => {
         if(this.state.emergencyNumbers){
-            const ans = this.state.emergencyNumbers.departamentos.find(x => x.departamento === department || x.departamento === 'Nacional');
+            const ans = this.state.emergencyNumbers.departamentos.find(x => x.departamento === department);
             return ans && ans.numeros ? ans.numeros : [];
         }
         return [];
@@ -449,19 +449,7 @@ class DiagnosticComponent extends Component <any, IState>{
                     </Button>
                 }
                 { this.state.results && (this.state.results.triage_level === EMERGENCY_LEVEL_4 || this.state.results.triage_level === EMERGENCY_LEVEL_5) &&
-                (
-                    <React.Fragment>
-                        {this.searchDepartmentNumbers(this.state.departamento).map(elem =>
-                            <div className="emergency-phone">
-                                <Typography variant="subtitle2" component="h2">
-                                    {elem.descripcion+ ":" + elem.numero}
-                                    <a href={`tel:${elem.numero}`}><PhoneEnabledIcon /></a>
-                                </Typography>
-                            </div>)
-                        }
-                        <br/>
-                    </React.Fragment>
-                )
+                     this.emergencyNumbers()
                 }
                 { this.state.results &&
                 <Button variant="contained" onClick={() => this.onEnd()} endIcon={<NavigateNextIcon />}>
@@ -492,6 +480,33 @@ class DiagnosticComponent extends Component <any, IState>{
         );
     }
 
+    emergencyNumbers = () => {
+        return <React.Fragment>
+            <Typography variant="body1" component="h1" className="titleInformation">
+                Números disponibles para {this.state.departamento}
+            </Typography>
+            {this.listPhoneNumbers(this.searchDepartmentNumbers(this.state.departamento))}
+            {this.listPhoneNumbers(this.searchDepartmentNumbers('Nacional'))}
+        </React.Fragment>;
+    }
+
+    listPhoneNumbers = (list: INumeros[]) => {
+        return <List className="emergency-phone">
+            {list.map((elem:INumeros) => {
+                return (
+                    <ListItem key={uuidv4()} className="item" >
+                        <ListItemText id={uuidv4()} primary={elem.numero} secondary={elem.descripcion}/>
+                        <ListItemSecondaryAction>
+                            <IconButton edge="end" aria-label="comments">
+                                <a href={`tel:${elem.numero}`}><PhoneEnabledIcon/></a>
+                            </IconButton>
+                        </ListItemSecondaryAction>
+                    </ListItem>
+                )
+            })
+            }
+        </List>;
+    }
 }
 
 export default injectIntl(DiagnosticComponent);
