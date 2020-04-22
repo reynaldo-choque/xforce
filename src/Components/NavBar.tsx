@@ -106,7 +106,7 @@ class NavBar extends Component<any, any> {
                         <Typography variant="subtitle1" className="titleNav">
                             Test Covid19<br/>
                             <Typography variant="caption" className="subtitleNav">
-                                Coranavirus
+                                testcovidbol.com
                             </Typography>
                         </Typography><br/>
                         <IconButton color="inherit" onClick={this.replay} >
