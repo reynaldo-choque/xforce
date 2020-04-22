@@ -265,6 +265,12 @@ class DiagnosticComponent extends Component <any, IState>{
                                 No continúe con este test.
                             </Typography>
                         </Typography>
+                        <Typography variant="body2" component="h2" className="titleService result">
+                            • Tu información es anónima
+                            <Typography variant="caption" component="h2" className="contentService">
+                                La información que usted proporciona es anónima y no se comparte con nadie.
+                            </Typography>
+                        </Typography>
                         <Divider/>
                         <Grid container spacing={0}>
                             <Grid item xs={6}>
