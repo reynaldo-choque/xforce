@@ -96,6 +96,7 @@
     display: flex;
     justify-content: center;
     font-weight: bold;
+    font-size: large;
 }
 
 .radioButton {
@@ -112,6 +113,13 @@
     color: #235588;
     background-color: white;
     padding: 5px;
+}
+
+.emergency-phone .item{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-bottom: -5px;
+    margin-top: -5px;
 }
 
 .emergency-phone a{
@@ -142,6 +150,11 @@
     background-color: #e8ffd8;
 }
 
+.Diagnostic .call_doctor{
+    border-left: 10px #a9cd54 solid;
+    background-color: #e8ffd8;
+}
+
 .Diagnostic .quarantine{
     border-left: 10px khaki solid;
     background-color: #fbffe3;
@@ -161,11 +174,14 @@
 .Diagnostic .titleService {
     background-color: white;
     text-align: left;
-    padding: 10px;
     font-weight: bold;
     line-height: 3px !important;
     color: #235588;
     margin-bottom: 2px;
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 0px;
 }
 
 .Diagnostic .contentService {
