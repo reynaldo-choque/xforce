@@ -151,15 +151,9 @@ class BoliviaStatistics extends React.Component<any, any> {
                                         ))
                                     }
                                     </tbody>
-                                    <tfoot key={uuidv4()}>
-                                        <th key={uuidv4()}>Total Bolivia</th>
-                                        <th key={uuidv4()}>{generalInfo.casosConfirmados}</th>
-                                        <th key={uuidv4()}>{generalInfo.personasRecuperadas}</th>
-                                        <th key={uuidv4()}>{generalInfo.muertes}</th>
-                                    </tfoot>
                                 </table>
                                 <div className="wrapper-sinple-chart">
-                                    <LineChart width={this.state.chartSize} height={500} data={hystoricByDay}
+                                    <LineChart width={this.state.chartSize} height={Math.min(350, window.innerHeight)} data={hystoricByDay}
                                                margin={{top: 20, right: 5, left: -25, bottom: 5}}>
                                         <XAxis dataKey="name"/>
                                         <YAxis/>
@@ -175,7 +169,7 @@ class BoliviaStatistics extends React.Component<any, any> {
                         </div>
                     </div>
                     <div className="bottom-chart">
-                        <LineChart width={this.state.bottomChartSize} height={500} data={hystoricByDay}
+                        <LineChart width={this.state.bottomChartSize} height={Math.min(400, window.innerHeight)} data={hystoricByDay}
                                    margin={{top: 20, right: 5, left: 5, bottom: 5}}>
                             <XAxis dataKey="name"/>
                             <YAxis/>
