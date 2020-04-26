@@ -12,6 +12,7 @@ import MapChart from "../MapChart/MapChart";
 import "./BoliviaStatistics.css";
 
 import { v4 as uuidv4 } from 'uuid';
+import { Grid, Paper } from '@material-ui/core';
 interface IStat {
     data: any
 }
@@ -93,7 +94,7 @@ class BoliviaStatistics extends React.Component<any, any> {
         if(this.mounted) {
             this.setState({
                 chartSize: width,
-                bottomChartSize:  window.innerWidth * 70 / 100
+                bottomChartSize:  window.innerWidth * 90 / 100
             });
         }
     }
@@ -107,6 +108,17 @@ class BoliviaStatistics extends React.Component<any, any> {
 
             return (
                 <React.Fragment>
+                    <Grid container spacing={3} className="gridBox">
+                        <Grid item xs>
+                        <Paper className="current">Confirmados<br/>{generalInfo.casosConfirmados}</Paper>
+                        </Grid>
+                        <Grid item xs>
+                        <Paper className="good">Recuperados<br/>{generalInfo.personasRecuperadas}</Paper>
+                        </Grid>
+                        <Grid item xs>
+                        <Paper className="bad">Fallecidos<br/>{generalInfo.muertes}</Paper>
+                        </Grid>
+                    </Grid>
                     <div className="bolivia-statistics" >
                         <div className="bolivia-statistics map">
                             <MapChart
@@ -117,33 +129,7 @@ class BoliviaStatistics extends React.Component<any, any> {
                         </div>
 
                         <div className="bolivia-statistics general-data">
-                            <div className="wrapper">
-                                <div className="table-general-info">
-                                    <div className="row header">
-                                        <div className="cell">
-                                            Confirmados
-                                        </div>
-                                        <div className="cell">
-                                            Personas Recuperadas
-                                        </div>
-                                        <div className="cell">
-                                            Muertes
-                                        </div>
-                                    </div>
 
-                                    <div className="row">
-                                        <div className="cell" data-title="Casos Confirmados">
-                                            {generalInfo.casosConfirmados}
-                                        </div>
-                                        <div className="cell" data-title="Personas Recuperadas">
-                                            {generalInfo.personasRecuperadas}
-                                        </div>
-                                        <div className="cell" data-title="Muertes">
-                                            {generalInfo.muertes}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div className="wrapper-department">
                                 <table>
                                     <thead>
@@ -199,30 +185,6 @@ class BoliviaStatistics extends React.Component<any, any> {
                             <Line type="monotone" dataKey="casos" stroke="orange" dot={{ stroke: 'orange', strokeWidth: 1 }} activeDot={{r: 1}}/>
                             <Line type="monotone" dataKey="muertes" stroke="purple" dot={{ stroke: 'purple', strokeWidth: 1 }} activeDot={{r: 1}}/>
                         </LineChart>
-                    </div>
-                    <div className="bolivia-statistics by-department">
-                        <table>
-                            <thead>
-                            <tr key={uuidv4()}>
-                                <th>Departmento</th>
-                                <th>Confirmados</th>
-                                <th>Recuperad@s</th>
-                                <th>Muertes</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {
-                                byDepartment.map(department => (
-                                    <tr key={uuidv4()}>
-                                        <td>{department.name}</td>
-                                        <td>{department.casosConfirmados}</td>
-                                        <td>{department.personasRecuperadas}</td>
-                                        <td>{department.muertes}</td>
-                                    </tr>
-                                ))
-                            }
-                            </tbody>
-                        </table>
                     </div>
                 </React.Fragment>
             );

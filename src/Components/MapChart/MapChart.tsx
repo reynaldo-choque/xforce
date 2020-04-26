@@ -76,9 +76,9 @@ class MapChart extends React.Component<any, any> {
         } else {
             if(this.mounted) {
                 this.setState({
-                    mapHeight: 1000,
-                    mapScale: 4000,
-                    mapWidth: 900,
+                    mapHeight: X/2,
+                    mapScale: 2*X,
+                    mapWidth: X/2,
                     rotate_X: 64,
                     rotate_Y: 16
                 });
