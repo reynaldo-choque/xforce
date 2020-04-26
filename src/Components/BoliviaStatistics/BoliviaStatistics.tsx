@@ -161,7 +161,7 @@ class BoliviaStatistics extends React.Component<any, any> {
                                         <Legend />
                                         <CartesianGrid strokeDasharray="1 1"/>
                                         <Line type="monotone" dataKey="casos" stroke="orange" dot={{ stroke: 'orange', strokeWidth: 1 }} activeDot={{r: 1}}/>
-                                        <Line type="monotone" dataKey="muertes" stroke="purple" dot={{ stroke: 'purple', strokeWidth: 1 }} activeDot={{r: 1}}/>
+                                        <Line type="monotone" name="decesos" dataKey="muertes" stroke="purple" dot={{ stroke: 'purple', strokeWidth: 1 }} activeDot={{r: 1}}/>
                                         <Line type="monotone" dataKey="recuperados" stroke="green" dot={{ stroke: 'green', strokeWidth: 1 }} activeDot={{r: 1}}/>
                                     </LineChart>
                                 </div>
@@ -177,7 +177,7 @@ class BoliviaStatistics extends React.Component<any, any> {
                             <Legend />
                             <CartesianGrid strokeDasharray="1 1"/>
                             <Line type="monotone" dataKey="casos" stroke="orange" dot={{ stroke: 'orange', strokeWidth: 1 }} activeDot={{r: 1}}/>
-                            <Line type="monotone" dataKey="muertes" stroke="purple" dot={{ stroke: 'purple', strokeWidth: 1 }} activeDot={{r: 1}}/>
+                            <Line type="monotone" name="decesos" dataKey="muertes" stroke="purple" dot={{ stroke: 'purple', strokeWidth: 1 }} activeDot={{r: 1}}/>
                             <Line type="monotone" dataKey="recuperados" stroke="green" dot={{ stroke: 'green', strokeWidth: 1 }} activeDot={{r: 1}}/>
                         </LineChart>
                     </div>

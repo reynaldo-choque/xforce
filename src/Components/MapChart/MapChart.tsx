@@ -124,7 +124,7 @@ class MapChart extends React.Component<any, any> {
                                             key={uuidv4()}
                                             geography={geo}
                                             stroke="#cb410b"
-                                            fill= {`rgb(${255-percentage/7},${140+percentage},${percentage * 2})`}
+                                            fill= {`rgb(${255-percentage/7},${145+percentage},${percentage * 2.5})`}
                                             style={{
                                                 hover: {
                                                     fill: "#ffefcc",
