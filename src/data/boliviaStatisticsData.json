@@ -1,0 +1,93 @@
+{
+  "data":{
+    "generalInfo":{
+      "casosConfirmados": 300,
+      "personasRecuperadas": 2,
+      "muertes": 24
+    },
+    "byDepartment":[
+      {
+        "name": "Santa Cruz",
+        "casosConfirmados": 147,
+        "personasRecuperadas": 1,
+        "muertes": 10
+      }, {
+        "name":"La Paz",
+        "casosConfirmados": 65,
+        "personasRecuperadas": 0,
+        "muertes": 8
+      }, {
+        "name":"Cochabamba",
+        "casosConfirmados": 49,
+        "personasRecuperadas": 0,
+        "muertes": 4
+      }, {
+        "name":"Potosí",
+        "casosConfirmados": 15,
+        "personasRecuperadas": 0,
+        "muertes": 1
+      }, {
+        "name":"Pando",
+        "casosConfirmados": 11,
+        "personasRecuperadas": 0,
+        "muertes": 0
+      }, {
+        "name":"Oruro",
+        "casosConfirmados": 11,
+        "personasRecuperadas": 1,
+        "muertes": 1
+      }, {
+        "name":"Tarija",
+        "casosConfirmados": 1,
+        "personasRecuperadas": 0,
+        "muertes": 0
+      }, {
+        "name":"Chuquisaca",
+        "casosConfirmados": 1,
+        "personasRecuperadas": 0,
+        "muertes": 0
+      }, {
+        "name":"Beni",
+        "casosConfirmados": 0,
+        "personasRecuperadas": 0,
+        "muertes": 0
+      }
+    ],
+    "hystoricByDay": [
+      {"name": "", "casos": 0, "muertes": 0},
+      {"name": "10 Mar", "casos": 2, "muertes": 0},
+      {"name": "11 Mar", "casos": 3, "muertes": 0},
+      {"name": "12 Mar", "casos": 3, "muertes": 0},
+      {"name": "13 Mar", "casos": 10, "muertes": 0},
+      {"name": "14 Mar", "casos": 10, "muertes": 0},
+      {"name": "15 Mar", "casos": 11, "muertes": 0},
+      {"name": "16 Mar", "casos": 11, "muertes": 0},
+      {"name": "17 Mar", "casos": 12, "muertes": 0},
+      {"name": "18 Mar", "casos": 12, "muertes": 0},
+      {"name": "19 Mar", "casos": 17, "muertes": 0},
+      {"name": "20 Mar", "casos": 19, "muertes": 0},
+      {"name": "21 Mar", "casos": 20, "muertes": 0},
+      {"name": "22 Mar", "casos": 27, "muertes": 0},
+      {"name": "23 Mar", "casos": 28, "muertes": 0},
+      {"name": "24 Mar", "casos": 32, "muertes": 0},
+      {"name": "25 Mar", "casos": 39, "muertes": 0},
+      {"name": "26 Mar", "casos": 61, "muertes": 0},
+      {"name": "27 Mar", "casos": 74, "muertes": 0},
+      {"name": "28 Mar", "casos": 81, "muertes": 0},
+      {"name": "29 Mar", "casos": 96, "muertes": 3},
+      {"name": "30 Mar", "casos": 107, "muertes": 6},
+      {"name": "31 Mar", "casos": 115, "muertes": 7},
+      {"name": "1 Abr", "casos": 123, "muertes": 8},
+      {"name": "2 Abr", "casos": 132, "muertes": 9},
+      {"name": "3 Abr", "casos": 139, "muertes": 10},
+      {"name": "4 Abr", "casos": 157, "muertes": 10},
+      {"name": "5 Abr", "casos": 183, "muertes": 11},
+      {"name": "6 Abr", "casos": 194, "muertes": 14},
+      {"name": "7 Abr", "casos": 210, "muertes": 15},
+      {"name": "8 Abr", "casos": 264, "muertes": 18},
+      {"name": "9 Abr", "casos": 268, "muertes": 19},
+      {"name": "10 Abr", "casos": 275, "muertes": 20},
+      {"name": "11 Abr", "casos": 300, "muertes": 24}
+    ]
+  }
+}

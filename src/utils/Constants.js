@@ -1,3 +1,7 @@
+import React from 'react';
+
+export const StatisticsContext = React.createContext(null);
+
 export const SERIOUS_RISK = "serious";
 export const NORMAL_RISK = 'normal';
 export const EMERGENCY_RISK = 'emergency';
