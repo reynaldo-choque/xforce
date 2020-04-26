@@ -86,11 +86,20 @@ class MapChart extends React.Component<any, any> {
         }
     }
 
+    getPercentageByDepartment = (byDepartment, name) => {
+        if(byDepartment && name) {
+            const depInfo = byDepartment.find(dep => dep.name == name);
+            const total = byDepartment.reduce( (currentTotal, {casosConfirmados}) => currentTotal + casosConfirmados  ,0);
+            return 100 * depInfo.casosConfirmados / total;
+        }
+        return 0;
+    }
+
     render() {
         const base = this;
         const jsonData = this.convertDataToJson();
         if(jsonData){
-            const {data: { graphicCoordinates }} = jsonData;
+            const {data: { graphicCoordinates, byDepartment }} = jsonData;
             return (
                 <React.Fragment>
                     <ComposableMap
@@ -107,19 +116,22 @@ class MapChart extends React.Component<any, any> {
                             {({geographies}) =>
                                 geographies
                                     .filter(d => d.properties.country === "Bolivia")
-                                    .map(geo => (
+                                    .map(geo => {
+                                        let percentage = base.getPercentageByDepartment(byDepartment, geo.properties.name);
+                                        percentage = Math.ceil((100 - percentage) / 2);
+                                        return(
                                         <Geography
                                             key={uuidv4()}
                                             geography={geo}
                                             stroke="#cb410b"
-                                            fill= {base.state.fillColor || geo.properties.color || "red"}
+                                            fill= {`rgb(${255-percentage/7},${140+percentage},${percentage * 2})`}
                                             style={{
                                                 hover: {
-                                                    fill: "red",
+                                                    fill: "#9c5130",
                                                     outline: "none"
                                                 },
                                                 pressed: {
-                                                    fill: "blue",
+                                                    fill: "#9c5130",
                                                     outline: "none"
                                                 }
                                             }}
@@ -129,8 +141,8 @@ class MapChart extends React.Component<any, any> {
                                             onMouseLeave={() => {
                                                  this.props.dataTipFn(null);
                                             }}
-                                        />
-                                    ))
+                                        />);
+                                    })
                             }
                         </Geographies>
 
