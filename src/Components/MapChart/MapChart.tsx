@@ -127,11 +127,11 @@ class MapChart extends React.Component<any, any> {
                                             fill= {`rgb(${255-percentage/7},${140+percentage},${percentage * 2})`}
                                             style={{
                                                 hover: {
-                                                    fill: "#9c5130",
+                                                    fill: "#ffefcc",
                                                     outline: "none"
                                                 },
                                                 pressed: {
-                                                    fill: "#9c5130",
+                                                    fill: "#ffefcc",
                                                     outline: "none"
                                                 }
                                             }}
