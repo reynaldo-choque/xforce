@@ -11,12 +11,14 @@ import MapChart from "../MapChart/MapChart";
 // STYLES
 import "./BoliviaStatistics.css";
 
+import { v4 as uuidv4 } from 'uuid';
 interface IStat {
     data: any
 }
 
 class BoliviaStatistics extends React.Component<any, any> {
     static contextType = StatisticsContext;
+    mounted = false;
 
     state = {
         chartSize: 200,
@@ -30,6 +32,9 @@ class BoliviaStatistics extends React.Component<any, any> {
         this.handleWindowResize();
     }
 
+    componentWillMount() { this.mounted = true; }
+    componentWillUnmount() { this.mounted = false; }
+
     componentDidMount() {
         window.addEventListener('resize', this.handleWindowResize);
         this.handleWindowResize();
@@ -39,7 +44,8 @@ class BoliviaStatistics extends React.Component<any, any> {
     convertDataToJson = () => {
         if(this.context) {
             //let obj: MyObj = JSON.parse(data.toString());
-            let jsonData: IStat = JSON.parse(atob(this.context));
+            //decodeURIComponent(escape(atob(this.context)))
+            let jsonData: IStat = JSON.parse(decodeURIComponent(escape(atob(this.context))));
             return jsonData;
         }
         return null;
@@ -84,10 +90,12 @@ class BoliviaStatistics extends React.Component<any, any> {
             width = width * 35 / 100;
         else
             width = width * 36 / 100;
-        this.setState({
-            chartSize: width,
-            bottomChartSize:  window.innerWidth * 70 / 100
-        });
+        if(this.mounted) {
+            this.setState({
+                chartSize: width,
+                bottomChartSize:  window.innerWidth * 70 / 100
+            });
+        }
     }
 
 
@@ -140,29 +148,29 @@ class BoliviaStatistics extends React.Component<any, any> {
                                 <table>
                                     <thead>
                                     <tr>
-                                        <th>Departmento</th>
-                                        <th>Confirmados</th>
-                                        <th>Recuperad@s</th>
-                                        <th>Muertes</th>
+                                        <th key={uuidv4()}>Departmento</th>
+                                        <th key={uuidv4()}>Confirmados</th>
+                                        <th key={uuidv4()}>Recuperad@s</th>
+                                        <th key={uuidv4()}>Muertes</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {
                                         byDepartment.map(department => (
-                                            <tr>
-                                                <td>{department.name}</td>
-                                                <td>{department.casosConfirmados}</td>
-                                                <td>{department.personasRecuperadas}</td>
-                                                <td>{department.muertes}</td>
+                                            <tr key={uuidv4()}>
+                                                <td key={uuidv4()}>{department.name}</td>
+                                                <td key={uuidv4()}>{department.casosConfirmados}</td>
+                                                <td key={uuidv4()}>{department.personasRecuperadas}</td>
+                                                <td key={uuidv4()}>{department.muertes}</td>
                                             </tr>
                                         ))
                                     }
                                     </tbody>
-                                    <tfoot>
-                                        <th>Total Bolivia</th>
-                                        <th>{generalInfo.casosConfirmados}</th>
-                                        <th>{generalInfo.personasRecuperadas}</th>
-                                        <th>{generalInfo.muertes}</th>
+                                    <tfoot key={uuidv4()}>
+                                        <th key={uuidv4()}>Total Bolivia</th>
+                                        <th key={uuidv4()}>{generalInfo.casosConfirmados}</th>
+                                        <th key={uuidv4()}>{generalInfo.personasRecuperadas}</th>
+                                        <th key={uuidv4()}>{generalInfo.muertes}</th>
                                     </tfoot>
                                 </table>
                                 <div className="wrapper-sinple-chart">
@@ -195,7 +203,7 @@ class BoliviaStatistics extends React.Component<any, any> {
                     <div className="bolivia-statistics by-department">
                         <table>
                             <thead>
-                            <tr>
+                            <tr key={uuidv4()}>
                                 <th>Departmento</th>
                                 <th>Confirmados</th>
                                 <th>Recuperad@s</th>
@@ -205,7 +213,7 @@ class BoliviaStatistics extends React.Component<any, any> {
                             <tbody>
                             {
                                 byDepartment.map(department => (
-                                    <tr>
+                                    <tr key={uuidv4()}>
                                         <td>{department.name}</td>
                                         <td>{department.casosConfirmados}</td>
                                         <td>{department.personasRecuperadas}</td>

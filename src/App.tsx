@@ -23,8 +23,8 @@ class App extends React.Component<any, any> {
                 XforceAPI.getBoliviaStatistics().then(boliviaData => {
                     if(boliviaData && boliviaData.data && boliviaData.data.content) {
                         this.setState({
-                            boliviaData: boliviaData.data.content
-                        })
+                            boliviaData: boliviaData.data.content.toString('UTF-8')
+                        });
                     }
                 });
             } else {
@@ -34,6 +34,7 @@ class App extends React.Component<any, any> {
     }
 
     render() {
+
         return (
           <StatisticsContext.Provider value={this.state.boliviaData}>
             <div className="App">

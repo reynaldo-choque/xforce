@@ -22,6 +22,8 @@ interface IStat {
 
 class MapChart extends React.Component<any, any> {
     static contextType = StatisticsContext;
+    mounted = false;
+
     state = {
         mapWidth: 800,
         mapHeight: 600,
@@ -36,6 +38,9 @@ class MapChart extends React.Component<any, any> {
         this.handleWindowResize();
     }
 
+    componentWillMount() { this.mounted = true; }
+    componentWillUnmount() { this.mounted = false; }
+
     componentDidMount() {
         // XforceAPI call rest for statistics
         //this.setState({
@@ -48,7 +53,7 @@ class MapChart extends React.Component<any, any> {
     convertDataToJson = () => {
         if(this.context) {
             //let obj: MyObj = JSON.parse(data.toString());
-            let jsonData: IStat = JSON.parse(atob(this.context));
+            let jsonData: IStat = JSON.parse(decodeURIComponent(escape(atob(this.context))));
             return jsonData;
         }
         return null;
@@ -59,21 +64,25 @@ class MapChart extends React.Component<any, any> {
         let X = window.innerWidth;
 
         if (X > 800) {
-            this.setState({
-                mapWidth: 800,
-                mapHeight: 600,
-                mapScale: 2450,
-                rotate_X: 61,
-                rotate_Y: 16
-            });
+            if(this.mounted) {
+                this.setState({
+                    mapWidth: 800,
+                    mapHeight: 600,
+                    mapScale: 2450,
+                    rotate_X: 61,
+                    rotate_Y: 16
+                });
+            }
         } else {
-            this.setState({
-                mapHeight: 1000,
-                mapScale: 4000,
-                mapWidth: 900,
-                rotate_X: 64,
-                rotate_Y: 16
-            });
+            if(this.mounted) {
+                this.setState({
+                    mapHeight: 1000,
+                    mapScale: 4000,
+                    mapWidth: 900,
+                    rotate_X: 64,
+                    rotate_Y: 16
+                });
+            }
         }
     }
 
