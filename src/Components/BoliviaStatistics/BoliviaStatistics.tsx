@@ -104,7 +104,6 @@ class BoliviaStatistics extends React.Component<any, any> {
         const jsonData = this.convertDataToJson();
         if(jsonData) {
             const {data: {generalInfo, byDepartment, hystoricByDay, graphicCoordinates}} = jsonData;
-            //return (<div> { generalInfo.casosConfirmados }</div>)
 
             return (
                 <React.Fragment>
@@ -160,7 +159,7 @@ class BoliviaStatistics extends React.Component<any, any> {
                                     </tfoot>
                                 </table>
                                 <div className="wrapper-sinple-chart">
-                                    <LineChart width={this.state.chartSize} height={300} data={hystoricByDay}
+                                    <LineChart width={this.state.chartSize} height={500} data={hystoricByDay}
                                                margin={{top: 20, right: 5, left: -25, bottom: 5}}>
                                         <XAxis dataKey="name"/>
                                         <YAxis/>
@@ -169,13 +168,14 @@ class BoliviaStatistics extends React.Component<any, any> {
                                         <CartesianGrid strokeDasharray="1 1"/>
                                         <Line type="monotone" dataKey="casos" stroke="orange" dot={{ stroke: 'orange', strokeWidth: 1 }} activeDot={{r: 1}}/>
                                         <Line type="monotone" dataKey="muertes" stroke="purple" dot={{ stroke: 'purple', strokeWidth: 1 }} activeDot={{r: 1}}/>
+                                        <Line type="monotone" dataKey="recuperados" stroke="green" dot={{ stroke: 'green', strokeWidth: 1 }} activeDot={{r: 1}}/>
                                     </LineChart>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="bottom-chart">
-                        <LineChart width={this.state.bottomChartSize} height={300} data={hystoricByDay}
+                        <LineChart width={this.state.bottomChartSize} height={500} data={hystoricByDay}
                                    margin={{top: 20, right: 5, left: 5, bottom: 5}}>
                             <XAxis dataKey="name"/>
                             <YAxis/>
@@ -184,6 +184,7 @@ class BoliviaStatistics extends React.Component<any, any> {
                             <CartesianGrid strokeDasharray="1 1"/>
                             <Line type="monotone" dataKey="casos" stroke="orange" dot={{ stroke: 'orange', strokeWidth: 1 }} activeDot={{r: 1}}/>
                             <Line type="monotone" dataKey="muertes" stroke="purple" dot={{ stroke: 'purple', strokeWidth: 1 }} activeDot={{r: 1}}/>
+                            <Line type="monotone" dataKey="recuperados" stroke="green" dot={{ stroke: 'green', strokeWidth: 1 }} activeDot={{r: 1}}/>
                         </LineChart>
                     </div>
                 </React.Fragment>
