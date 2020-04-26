@@ -1,18 +1,23 @@
 import * as React from 'react';
 import ReactTooltip from "react-tooltip";
+import {StatisticsContext} from '../../utils/Constants';
 
 import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
 
-import XforceAPI from "../../Services/XforceAPI";
 import MapChart from "../MapChart/MapChart";
 
 // STYLES
 import "./BoliviaStatistics.css";
-import boliviaStatisticsData from "../../data/boliviaStatisticsData.json";
+
+interface IStat {
+    data: any
+}
 
 class BoliviaStatistics extends React.Component<any, any> {
+    static contextType = StatisticsContext;
+
     state = {
         chartSize: 200,
         bottomChartSize: 600,
@@ -21,36 +26,47 @@ class BoliviaStatistics extends React.Component<any, any> {
 
     constructor(props: any) {
         super(props);
-    }
-
-    componentDidMount() {
-        // XforceAPI call rest for statistics
-        //this.setState({
-        //});
-
-        window.addEventListener('resize', this.handleWindowResize);
+        // eslint-disable-next-line
         this.handleWindowResize();
     }
 
+    componentDidMount() {
+        window.addEventListener('resize', this.handleWindowResize);
+        this.handleWindowResize();
+        this.convertDataToJson();
+    }
+
+    convertDataToJson = () => {
+        if(this.context) {
+            //let obj: MyObj = JSON.parse(data.toString());
+            let jsonData: IStat = JSON.parse(atob(this.context));
+            return jsonData;
+        }
+        return null;
+    }
+
     editTooltip = (department) => {
-        const {data: { byDepartment }} = boliviaStatisticsData;
-        if(department) {
-            const depInfo = byDepartment.find(dep => dep.name == department);
-            if(depInfo) {
+        const jsonData = this.convertDataToJson();
+        if(jsonData){
+            const {data: { byDepartment }} = jsonData;
+            if(department) {
+                const depInfo = byDepartment.find(dep => dep.name == department);
+                if(depInfo) {
+                    this.setState({
+                        tooltipContent: department
+                        + "<br /> Confirmados: "
+                        + depInfo.casosConfirmados
+                        + "<br /> Recuperados "
+                        + depInfo.personasRecuperadas
+                        + "<br /> Muertes "
+                        + depInfo.muertes
+                    });
+                }
+            } else {
                 this.setState({
-                    tooltipContent: department
-                    + "<br /> Confirmados: "
-                    + depInfo.casosConfirmados
-                    + "<br /> Recuperados "
-                    + depInfo.personasRecuperadas
-                    + "<br /> Muertes "
-                    + depInfo.muertes
+                    tooltipContent: ""
                 });
             }
-        } else {
-            this.setState({
-                tooltipContent: ""
-            });
         }
     }
 
@@ -74,128 +90,139 @@ class BoliviaStatistics extends React.Component<any, any> {
         });
     }
 
-    render() {
-        const {data: {generalInfo, byDepartment, hystoricByDay}} = boliviaStatisticsData;
-        return (
-            <React.Fragment>
-                <div className="bolivia-statistics" >
-                    <div className="bolivia-statistics map">
-                        <MapChart
-                            dataTip={this.state.tooltipContent}
-                            dataTipFn={this.editTooltip}
-                        />
-                        <ReactTooltip html={true} style={{padding: "0" }} />
-                    </div>
-                    <div className="bolivia-statistics general-data">
-                        <div className="wrapper">
-                            <div className="table-general-info">
-                                <div className="row header">
-                                    <div className="cell">
-                                        Confirmados
-                                    </div>
-                                    <div className="cell">
-                                        Personas Recuperadas
-                                    </div>
-                                    <div className="cell">
-                                        Muertes
-                                    </div>
-                                </div>
 
-                                <div className="row">
-                                    <div className="cell" data-title="Casos Confirmados">
-                                        {generalInfo.casosConfirmados}
+    render() {
+        const jsonData = this.convertDataToJson();
+        if(jsonData) {
+            const {data: {generalInfo, byDepartment, hystoricByDay, graphicCoordinates}} = jsonData;
+            //return (<div> { generalInfo.casosConfirmados }</div>)
+
+            return (
+                <React.Fragment>
+                    <div className="bolivia-statistics" >
+                        <div className="bolivia-statistics map">
+                            <MapChart
+                                dataTip={this.state.tooltipContent}
+                                dataTipFn={this.editTooltip}
+                            />
+                            <ReactTooltip html={true} style={{padding: "0" }} />
+                        </div>
+
+                        <div className="bolivia-statistics general-data">
+                            <div className="wrapper">
+                                <div className="table-general-info">
+                                    <div className="row header">
+                                        <div className="cell">
+                                            Confirmados
+                                        </div>
+                                        <div className="cell">
+                                            Personas Recuperadas
+                                        </div>
+                                        <div className="cell">
+                                            Muertes
+                                        </div>
                                     </div>
-                                    <div className="cell" data-title="Personas Recuperadas">
-                                        {generalInfo.personasRecuperadas}
-                                    </div>
-                                    <div className="cell" data-title="Muertes">
-                                        {generalInfo.muertes}
+
+                                    <div className="row">
+                                        <div className="cell" data-title="Casos Confirmados">
+                                            {generalInfo.casosConfirmados}
+                                        </div>
+                                        <div className="cell" data-title="Personas Recuperadas">
+                                            {generalInfo.personasRecuperadas}
+                                        </div>
+                                        <div className="cell" data-title="Muertes">
+                                            {generalInfo.muertes}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="wrapper-department">
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th>Departmento</th>
-                                    <th>Confirmados</th>
-                                    <th>Recuperad@s</th>
-                                    <th>Muertes</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {
-                                    byDepartment.map(department => (
-                                        <tr>
-                                            <td>{department.name}</td>
-                                            <td>{department.casosConfirmados}</td>
-                                            <td>{department.personasRecuperadas}</td>
-                                            <td>{department.muertes}</td>
-                                        </tr>
-                                    ))
-                                }
-                                </tbody>
-                                <tfoot>
-                                    <th>Total Bolivia</th>
-                                    <th>{generalInfo.casosConfirmados}</th>
-                                    <th>{generalInfo.personasRecuperadas}</th>
-                                    <th>{generalInfo.muertes}</th>
-                                </tfoot>
-                            </table>
-                            <div className="wrapper-sinple-chart">
-                                <LineChart width={this.state.chartSize} height={300} data={hystoricByDay}
-                                           margin={{top: 20, right: 5, left: -25, bottom: 5}}>
-                                    <XAxis dataKey="name"/>
-                                    <YAxis/>
-                                    <Tooltip />
-                                    <Legend />
-                                    <CartesianGrid strokeDasharray="1 1"/>
-                                    <Line type="monotone" dataKey="casos" stroke="orange" dot={{ stroke: 'orange', strokeWidth: 1 }} activeDot={{r: 1}}/>
-                                    <Line type="monotone" dataKey="muertes" stroke="purple" dot={{ stroke: 'purple', strokeWidth: 1 }} activeDot={{r: 1}}/>
-                                </LineChart>
+                            <div className="wrapper-department">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Departmento</th>
+                                        <th>Confirmados</th>
+                                        <th>Recuperad@s</th>
+                                        <th>Muertes</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {
+                                        byDepartment.map(department => (
+                                            <tr>
+                                                <td>{department.name}</td>
+                                                <td>{department.casosConfirmados}</td>
+                                                <td>{department.personasRecuperadas}</td>
+                                                <td>{department.muertes}</td>
+                                            </tr>
+                                        ))
+                                    }
+                                    </tbody>
+                                    <tfoot>
+                                        <th>Total Bolivia</th>
+                                        <th>{generalInfo.casosConfirmados}</th>
+                                        <th>{generalInfo.personasRecuperadas}</th>
+                                        <th>{generalInfo.muertes}</th>
+                                    </tfoot>
+                                </table>
+                                <div className="wrapper-sinple-chart">
+                                    <LineChart width={this.state.chartSize} height={300} data={hystoricByDay}
+                                               margin={{top: 20, right: 5, left: -25, bottom: 5}}>
+                                        <XAxis dataKey="name"/>
+                                        <YAxis/>
+                                        <Tooltip />
+                                        <Legend />
+                                        <CartesianGrid strokeDasharray="1 1"/>
+                                        <Line type="monotone" dataKey="casos" stroke="orange" dot={{ stroke: 'orange', strokeWidth: 1 }} activeDot={{r: 1}}/>
+                                        <Line type="monotone" dataKey="muertes" stroke="purple" dot={{ stroke: 'purple', strokeWidth: 1 }} activeDot={{r: 1}}/>
+                                    </LineChart>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="bottom-chart">
-                    <LineChart width={this.state.bottomChartSize} height={300} data={hystoricByDay}
-                               margin={{top: 20, right: 5, left: 5, bottom: 5}}>
-                        <XAxis dataKey="name"/>
-                        <YAxis/>
-                        <Tooltip />
-                        <Legend />
-                        <CartesianGrid strokeDasharray="1 1"/>
-                        <Line type="monotone" dataKey="casos" stroke="orange" dot={{ stroke: 'orange', strokeWidth: 1 }} activeDot={{r: 1}}/>
-                        <Line type="monotone" dataKey="muertes" stroke="purple" dot={{ stroke: 'purple', strokeWidth: 1 }} activeDot={{r: 1}}/>
-                    </LineChart>
-                </div>
-                <div className="bolivia-statistics by-department">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Departmento</th>
-                            <th>Confirmados</th>
-                            <th>Recuperad@s</th>
-                            <th>Muertes</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {
-                            byDepartment.map(department => (
-                                <tr>
-                                    <td>{department.name}</td>
-                                    <td>{department.casosConfirmados}</td>
-                                    <td>{department.personasRecuperadas}</td>
-                                    <td>{department.muertes}</td>
-                                </tr>
-                            ))
-                        }
-                        </tbody>
-                    </table>
-                </div>
-            </React.Fragment>
-        );
+                    <div className="bottom-chart">
+                        <LineChart width={this.state.bottomChartSize} height={300} data={hystoricByDay}
+                                   margin={{top: 20, right: 5, left: 5, bottom: 5}}>
+                            <XAxis dataKey="name"/>
+                            <YAxis/>
+                            <Tooltip />
+                            <Legend />
+                            <CartesianGrid strokeDasharray="1 1"/>
+                            <Line type="monotone" dataKey="casos" stroke="orange" dot={{ stroke: 'orange', strokeWidth: 1 }} activeDot={{r: 1}}/>
+                            <Line type="monotone" dataKey="muertes" stroke="purple" dot={{ stroke: 'purple', strokeWidth: 1 }} activeDot={{r: 1}}/>
+                        </LineChart>
+                    </div>
+                    <div className="bolivia-statistics by-department">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Departmento</th>
+                                <th>Confirmados</th>
+                                <th>Recuperad@s</th>
+                                <th>Muertes</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                byDepartment.map(department => (
+                                    <tr>
+                                        <td>{department.name}</td>
+                                        <td>{department.casosConfirmados}</td>
+                                        <td>{department.personasRecuperadas}</td>
+                                        <td>{department.muertes}</td>
+                                    </tr>
+                                ))
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </React.Fragment>
+            );
+
+        } else {
+            return (<div>--</div>)
+        }
+
     }
 }
 

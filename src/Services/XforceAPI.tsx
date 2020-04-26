@@ -5,6 +5,8 @@ const RESULT_API_BASE_URL = 'https://api.infermedica.com/covid19/triage';
 const RISK_FACTORS_API_BASE_URL = 'https://api.infermedica.com/covid19/risk_factors';
 const SYMPTOMS_FACTORS_API_BASE_URL = 'https://api.infermedica.com/covid19/symptoms';
 const EMERGENCY_NUMBERS_API_BASE_URL = 'http://elmer.southcentralus.cloudapp.azure.com:3700/api/emergencias';
+const BOLIVIA_STATISTICS_BASE_URL = 'https://api.github.com/repos/help-covid-bolivia/data-covid-bolivia/contents/data/boliviaStatistics.json';
+const GIT_API_QUERY_LIMIT = 'https://api.github.com/rate_limit';
 const applicationId = process.env.REACT_APP_ID;
 const applicationKey = process.env.REACT_APP_APPID;
 const headers = {
@@ -16,7 +18,17 @@ const headers = {
 
 const headerOwn = {
     "Content-Type" :"application/json",
-}
+};
+
+const headerGitAPi = {
+    "Authorization": "token 82b877711f18d2de766e1939db00c6f3fcff12b8",
+    "Accept": "application/vnd.github.v3+json",
+    "User-Agent": "help-covid-bolivia"
+};
+
+const headerGitAPiLimit = {
+    "Authorization": "token 82b877711f18d2de766e1939db00c6f3fcff12b8"
+};
 
 class ApiService {
 
@@ -58,6 +70,14 @@ class ApiService {
 
     getEmergencyNumbers = () => {
         return axios.get(EMERGENCY_NUMBERS_API_BASE_URL, {headers: headerOwn});
+    }
+
+    getBoliviaStatistics = () => {
+        return axios.get(BOLIVIA_STATISTICS_BASE_URL, {headers: headerGitAPi});
+    }
+
+    getQueryLimit = () => {
+        return axios.get(GIT_API_QUERY_LIMIT, {headers: headerGitAPiLimit});
     }
 }
 
