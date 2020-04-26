@@ -134,7 +134,10 @@ class MapChart extends React.Component<any, any> {
                             }
                         </Geographies>
 
-                        {BOLIVIA_CAPITAL_DEPARTMENT_COORDINATES.map(({name, coordinates, markerOffset}) => (
+                        {window.innerWidth >= 650 && BOLIVIA_CAPITAL_DEPARTMENT_COORDINATES.map(({name, coordinates, markerOffset}) => {
+                            const factorSize = window.innerWidth / 1920;
+                            const fontSize = Math.ceil( Math.max(7, 10 * factorSize) );
+                            return (
                             <Marker key={uuidv4()} coordinates={coordinates}>
                                 <g
                                     fill="none"
@@ -144,24 +147,25 @@ class MapChart extends React.Component<any, any> {
                                     strokeLinejoin="round"
                                     transform="translate(-12, -19)"
                                 >
-                                    <circle cx="12" cy="10" r="3"/>
-                                    <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z"/>
+                                    <circle cx="12" cy="10" r="3" />
+                                    <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z"  />
                                 </g>
                                 <text
                                     textAnchor="middle"
                                     y={markerOffset}
-                                    style={{ fontFamily: "system-ui", fill: "#5D5A6D", fontSize: "10px", fontWeight: "bold"}}
+                                    style={{ fontFamily: "system-ui", fill: "#5D5A6D", fontSize: `${fontSize}px`, fontWeight: "bold"}}
                                 >
                                     {name}
                                 </text>
-                            </Marker>
-                        ))}
+                            </Marker>);
+                        })}
 
-                        {graphicCoordinates.map(({name, coordinates, markerOffset, radioInfection}) => (
-                            <Marker key={uuidv4()} coordinates={coordinates}>
-                                <circle r={radioInfection} fill="#ff0000" stroke="#cc0000" strokeWidth={1} opacity={0.6}/>
-                            </Marker>
-                        ))}
+                        {graphicCoordinates.map(({name, coordinates, markerOffset, radioInfection}) => {
+                            const factorSize = window.innerWidth / 1500;
+                            return (<Marker key={uuidv4()} coordinates={coordinates}>
+                                <circle r={ Math.max(2, radioInfection * factorSize)  } fill="#ff0000" stroke="#cc0000" strokeWidth={1} opacity={0.6}/>
+                            </Marker>);
+                        })}
                     </ComposableMap>
                 </React.Fragment>
             );
