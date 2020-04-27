@@ -9,6 +9,7 @@ const BOLIVIA_STATISTICS_BASE_URL = 'https://api.github.com/repos/help-covid-bol
 const GIT_API_QUERY_LIMIT = 'https://api.github.com/rate_limit';
 const applicationId = process.env.REACT_APP_ID;
 const applicationKey = process.env.REACT_APP_APPID;
+const tokenBolivia = process.env.REACT_APP_TOKEN_GIT;
 const headers = {
     "App-Id" : applicationId,
     "App-Key" : applicationKey,
@@ -21,13 +22,13 @@ const headerOwn = {
 };
 
 const headerGitAPi = {
-    "Authorization": "token 82b877711f18d2de766e1939db00c6f3fcff12b8",
+    "Authorization": tokenBolivia,
     "Accept": "application/vnd.github.v3+json",
     "User-Agent": "help-covid-bolivia"
 };
 
 const headerGitAPiLimit = {
-    "Authorization": "token 82b877711f18d2de766e1939db00c6f3fcff12b8"
+    "Authorization": tokenBolivia
 };
 
 class ApiService {
