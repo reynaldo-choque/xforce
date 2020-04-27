@@ -11,6 +11,7 @@ import MapChart from "../MapChart/MapChart";
 // STYLES
 import "./BoliviaStatistics.css";
 
+import loading_icon from "../../images/loading.gif";
 import { v4 as uuidv4 } from 'uuid';
 import { Grid, Paper } from '@material-ui/core';
 interface IStat {
@@ -169,7 +170,7 @@ class BoliviaStatistics extends React.Component<any, any> {
                         </div>
                     </div>
                     <div className="bottom-chart">
-                        <LineChart width={this.state.bottomChartSize} height={Math.min(400, window.innerHeight)} data={hystoricByDay}
+                        <LineChart width={8*window.innerWidth/10} height={Math.min(400, window.innerHeight)} data={hystoricByDay}
                                    margin={{top: 20, right: 5, left: -15, bottom: 5}}>
                             <XAxis dataKey="name"/>
                             <YAxis/>
@@ -185,7 +186,12 @@ class BoliviaStatistics extends React.Component<any, any> {
             );
 
         } else {
-            return (<div>--</div>)
+            return (
+                    <div style={{top: "50%", position: "absolute"}}>
+                        <img src={loading_icon} style={{maxWidth: "10%", maxHeight: "10%"}} />
+                        <div><b> Cargando...</b></div>
+                    </div>
+            );
         }
 
     }
