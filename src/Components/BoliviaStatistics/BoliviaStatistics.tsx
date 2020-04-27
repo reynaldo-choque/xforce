@@ -170,7 +170,7 @@ class BoliviaStatistics extends React.Component<any, any> {
                         </div>
                     </div>
                     <div className="bottom-chart">
-                        <LineChart width={this.state.bottomChartSize} height={Math.min(400, window.innerHeight)} data={hystoricByDay}
+                        <LineChart width={8*window.innerWidth/10} height={Math.min(400, window.innerHeight)} data={hystoricByDay}
                                    margin={{top: 20, right: 5, left: -15, bottom: 5}}>
                             <XAxis dataKey="name"/>
                             <YAxis/>
