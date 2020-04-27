@@ -66,7 +66,7 @@ class BoliviaStatistics extends React.Component<any, any> {
                         + depInfo.casosConfirmados
                         + "<br /> Recuperados "
                         + depInfo.personasRecuperadas
-                        + "<br /> Muertes "
+                        + "<br /> Decesos "
                         + depInfo.muertes
                     });
                 }
@@ -116,7 +116,7 @@ class BoliviaStatistics extends React.Component<any, any> {
                         <Paper className="good">Recuperados<br/>{generalInfo.personasRecuperadas}</Paper>
                         </Grid>
                         <Grid item xs>
-                        <Paper className="bad">Fallecidos<br/>{generalInfo.muertes}</Paper>
+                        <Paper className="bad">Decesos<br/>{generalInfo.muertes}</Paper>
                         </Grid>
                     </Grid>
                     <div className="bolivia-statistics" >
@@ -136,8 +136,8 @@ class BoliviaStatistics extends React.Component<any, any> {
                                     <tr>
                                         <th key={uuidv4()}>Departmento</th>
                                         <th key={uuidv4()}>Confirmados</th>
-                                        <th key={uuidv4()}>Recuperad@s</th>
-                                        <th key={uuidv4()}>Muertes</th>
+                                        <th key={uuidv4()}>Recuperados</th>
+                                        <th key={uuidv4()}>Decesos</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -171,7 +171,7 @@ class BoliviaStatistics extends React.Component<any, any> {
                     </div>
                     <div className="bottom-chart">
                         <LineChart width={this.state.bottomChartSize} height={Math.min(400, window.innerHeight)} data={hystoricByDay}
-                                   margin={{top: 20, right: 5, left: 5, bottom: 5}}>
+                                   margin={{top: 20, right: 5, left: -15, bottom: 5}}>
                             <XAxis dataKey="name"/>
                             <YAxis/>
                             <Tooltip />
