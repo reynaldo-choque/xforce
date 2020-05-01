@@ -4,6 +4,7 @@ import {StatisticsContext} from '../../utils/Constants';
 
 import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+    ComposedChart, Area, Bar
 } from 'recharts';
 
 import MapChart from "../MapChart/MapChart";
@@ -17,6 +18,62 @@ import { Grid, Paper } from '@material-ui/core';
 interface IStat {
     data: any
 }
+
+/*
+ import React, { PureComponent } from 'react';
+ import {
+ ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend
+ } from 'recharts';
+
+ const data = [
+ {
+ name: 'Page A', uv: 590, pv: 800, amt: 1400,
+ },
+ {
+ name: 'Page B', uv: 868, pv: 967, amt: 1506,
+ },
+ {
+ name: 'Page C', uv: 1397, pv: 1098, amt: 989,
+ },
+ {
+ name: 'Page D', uv: 1480, pv: 1200, amt: 1228,
+ },
+ {
+ name: 'Page E', uv: 1520, pv: 1108, amt: 1100,
+ },
+ {
+ name: 'Page F', uv: 1400, pv: 680, amt: 1700,
+ },
+ ];
+
+ export default class Example extends PureComponent {
+ static jsfiddleUrl = 'https://jsfiddle.net/alidingling/shjsn5su/';
+
+ render() {
+ return (
+ <ComposedChart
+ layout="vertical"
+ width={500}
+ height={400}
+ data={data}
+ margin={{
+ top: 20, right: 20, bottom: 20, left: 20,
+ }}
+ >
+ <CartesianGrid stroke="#f5f5f5" />
+ <XAxis type="number" />
+ <YAxis dataKey="name" type="category" />
+ <Tooltip />
+ <Legend />
+ <Area dataKey="amt" fill="#8884d8" stroke="#8884d8" />
+ <Bar dataKey="pv" barSize={20} fill="#413ea0" />
+ <Line dataKey="uv" stroke="#ff7300" />
+ </ComposedChart>
+ );
+ }
+ }
+
+*/
 
 class BoliviaStatistics extends React.Component<any, any> {
     static contextType = StatisticsContext;
@@ -105,7 +162,7 @@ class BoliviaStatistics extends React.Component<any, any> {
         const jsonData = this.convertDataToJson();
         if(jsonData) {
             const {data: {generalInfo, byDepartment, hystoricByDay, graphicCoordinates}} = jsonData;
-
+            byDepartment.sort((depA, depB) => depA.casosConfirmados < depB.casosConfirmados ? 1 : -1 );
             return (
                 <React.Fragment>
                     <Grid container spacing={3} className="gridBox">
@@ -154,7 +211,7 @@ class BoliviaStatistics extends React.Component<any, any> {
                                     </tbody>
                                 </table>
                                 <div className="wrapper-sinple-chart">
-                                    <LineChart width={this.state.chartSize} height={Math.min(350, window.innerHeight)} data={hystoricByDay}
+                                    <LineChart width={3*window.innerWidth/10} height={Math.min(350, window.innerHeight)} data={hystoricByDay}
                                                margin={{top: 20, right: 5, left: -25, bottom: 5}}>
                                         <XAxis dataKey="name"/>
                                         <YAxis/>
@@ -165,6 +222,22 @@ class BoliviaStatistics extends React.Component<any, any> {
                                         <Line type="monotone" name="decesos" dataKey="muertes" stroke="purple" dot={{ stroke: 'purple', strokeWidth: 1 }} activeDot={{r: 1}}/>
                                         <Line type="monotone" dataKey="recuperados" stroke="green" dot={{ stroke: 'green', strokeWidth: 1 }} activeDot={{r: 1}}/>
                                     </LineChart>
+                                    <ComposedChart
+                                        layout="vertical"
+                                        width={3*window.innerWidth/10}
+                                        height={400}
+                                        data={byDepartment}
+                                        margin={{
+                                            top: 20, right: 20, bottom: 20, left: 40,
+                                        }}
+                                    >
+                                        <CartesianGrid stroke="#f5f5f5" />
+                                        <XAxis type="number" />
+                                        <YAxis dataKey="name" type="category" />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Bar name="Casos Confirmados" dataKey="casosConfirmados" barSize={20} fill="#413ea0" />
+                                    </ComposedChart>
                                 </div>
                             </div>
                         </div>
@@ -181,6 +254,23 @@ class BoliviaStatistics extends React.Component<any, any> {
                             <Line type="monotone" name="decesos" dataKey="muertes" stroke="purple" dot={{ stroke: 'purple', strokeWidth: 1 }} activeDot={{r: 1}}/>
                             <Line type="monotone" dataKey="recuperados" stroke="green" dot={{ stroke: 'green', strokeWidth: 1 }} activeDot={{r: 1}}/>
                         </LineChart>
+
+                        <ComposedChart
+                            layout="vertical"
+                            width={8*window.innerWidth/10}
+                            height={400}
+                            data={byDepartment}
+                            margin={{
+                                top: 20, right: 20, bottom: 20, left: 60,
+                            }}
+                        >
+                            <CartesianGrid stroke="#f5f5f5" />
+                            <XAxis type="number" />
+                            <YAxis dataKey="name" type="category" />
+                            <Tooltip />
+                            <Legend />
+                            <Bar name="Casos Confirmados" dataKey="casosConfirmados" barSize={20} fill="#ea6153" />
+                        </ComposedChart>
                     </div>
                 </React.Fragment>
             );
