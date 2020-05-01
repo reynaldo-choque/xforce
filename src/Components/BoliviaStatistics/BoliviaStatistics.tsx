@@ -269,7 +269,7 @@ class BoliviaStatistics extends React.Component<any, any> {
                             <YAxis dataKey="name" type="category" />
                             <Tooltip />
                             <Legend />
-                            <Bar name="Casos Confirmados" dataKey="casosConfirmados" barSize={20} fill="#413ea0" />
+                            <Bar name="Casos Confirmados" dataKey="casosConfirmados" barSize={20} fill="#ea6153" />
                         </ComposedChart>
                     </div>
                 </React.Fragment>
